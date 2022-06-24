@@ -9,6 +9,6 @@ router.post('/', empleadoCtrl.createEmpleado);
 router.get('/:id', empleadoCtrl.getEmpleado);
 router.put('/:id', empleadoCtrl.editEmpleado);
 router.delete('/:id', empleadoCtrl.deleteEmpleado);
-router.post('/:id/dependencia', empleadoCtrl.addDependencia);
+router.put('/:id/dependencia/:idDependencia', empleadoCtrl.addDependencia);
 //exportamos el modulo de rutas
 module.exports = router;

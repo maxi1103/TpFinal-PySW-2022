@@ -9,6 +9,7 @@ const empleadoCtrl = {}
 
  empleadoCtrl.createEmpleado = async (req, res) => {
     var empleado = new Empleado(req.body);
+    
     try {
         await empleado.save();
         res.json({
@@ -58,10 +59,10 @@ const empleadoCtrl = {}
 }
 
  empleadoCtrl.addDependencia = async(req,res)=>{
-    const dependencia = new Dependencia(req.body);
+    const idDependencia = req.params.idDependencia;
     const idEmpleado = req.params.id;
+    var dependencia = await Dependencia.findById(idDependencia);
     var empleado = await Empleado.findById(idEmpleado);
-    console.log(dependencia);
     try{
         empleado.dependencias.push(dependencia);
         empleado.save();
