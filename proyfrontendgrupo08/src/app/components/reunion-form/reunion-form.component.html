@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-12 col-md-6">
+        <h1>Formulario de Empleado</h1>
+        <form action="" class="border border-dark p-3" #reunionForm="ngForm">
+            <div class="form-group">
+                <label for="fecha" class="mt-3">Fecha:</label>
+                <input type="date" class="form-control"><!-- [(ngModel)]="reunion.fecha" name="fecha" id="fecha" #fecha="ngModel" required -->
+                <!-- <div *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)" class="alert alert-danger">
+                    <div *ngIf="fecha.errors?.['required']">Campo Obligatorio!</div>
+                </div> -->
+            </div>
+            <div class="form-group">
+                <label for="horaInicio" class="mt-3">Hora de Inicio</label>
+                <input type="text" class="form-control"> <!-- [(ngModel)]="reunion.horaInicio" name="horaInicio" id="horaInicio" #horaInicio="ngModel" required -->
+                <!-- <div *ngIf="horaInicio.invalid && (horaInicio.dirty || horaInicio.touched)" class="alert alert-danger">
+                    <div *ngIf="horaInicio.errors?.['required']">Campo Obligatorio!</div>
+                </div> -->
+            </div>
+            <div class="form-group">
+                <label for="horaFin" class="mt-3">Hora de Finalizacion</label>
+                <input type="text" class="form-control"> <!-- [(ngModel)]="reunion.horaFin" name="horaFin" id="horaFin" #horaFin="ngModel" -->
+                <!-- <div *ngIf="horaFin.invalid && (horaFin.dirty || horaFin.touched)" class="alert alert-danger">
+                    <div *ngIf="horaFin.errors?.['required']">Campo Obligatorio!</div>
+                </div> -->
+
+            </div>
+            <div class="form-group">
+                <label for="oficina" class="mt-3">Oficina</label>
+                <input type="text" class="form-control" ><!-- [(ngModel)]="reunion.oficina" name="oficina" id="oficina" #oficina="ngModel" -->
+                <!-- <div *ngIf="oficina.invalid && (oficina.dirty || oficina.touched)" class="alert alert-danger">
+                    <div *ngIf="oficina.errors?.['required']">Campo Obligatorio!</div>
+                </div> -->
+            </div>
+            <div class="form-group">
+                <label for="tipoReunion" class="mt-3">Tipo de Reunion</label>
+                <input type="text" class="form-control" ><!-- [(ngModel)]="reunion.tipoReunion" name="tipoReunion" id="tipoReunion" #tipoReunion="ngModel" -->
+                <!-- <div *ngIf="tipoReunion.invalid && (tipoReunion.dirty || tipoReunion.touched)" class="alert alert-danger">
+                    <div *ngIf="tipoReunion.errors?.['required']">Campo Obligatorio!</div>
+                </div> -->
+            </div>
+            <div class="form-group">
+                <label for="estadoReunion" class="mt-3">Estado</label>
+                <input type="text" class="form-control" ><!-- [(ngModel)]="reunion.estadoReunion" name="estadoReunion" id="estadoReunion" #estadoReunion="ngModel" -->
+                <!-- <div *ngIf="estadoReunion.invalid && (estadoReunion.dirty || estadoReunion.touched)" class="alert alert-danger">
+                    <div *ngIf="estadoReunion.errors?.['required']">Campo Obligatorio!</div>
+                </div> -->
+            </div>
+            <div class="form-group">
+                <label for="recursos" class="mt-3">Recursos</label>
+                <input type="text" class="form-control" ><!-- [(ngModel)]="reunion.recursos" name="recursos" id="recursos" #recursos="ngModel" -->
+                <!-- <div *ngIf="recursos.invalid && (recursos.dirty || recursos.touched)" class="alert alert-danger">
+                    <div *ngIf="recursos.errors?.['required']">Campo Obligatorio!</div>
+                </div> -->
+            </div>
+            
+            <button type="submit" class="btn btn-primary mt-4 mb-3" (click)="altaReunion()" [disabled]="reunionForm.invalid">Guardar</button>
+        </form>
+        <div *ngIf="save" class="alert alert-success">Empleado guardado correctamente!!</div>
+    </div>
+</div>
+
