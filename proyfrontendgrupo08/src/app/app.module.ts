@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { LoginComponent } from './components/login/login.component';
-import { HeaderComponent } from './component/header/header.component';
 import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { ReunionFormComponent } from './components/reunion-form/reunion-form.component';
 import { UsuarioService } from './service/usuario.service';
+import { HeaderComponent } from './components/layout/header/header.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,6 @@ import { UsuarioService } from './service/usuario.service';
     LoginComponent,
     HeaderComponent,
     EmpleadoFormComponent,
-    HeaderComponent,
     FooterComponent,
     HomeComponent,
     ReunionFormComponent
