@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
+const Dependencia = require('./dependencia');
 const EmpleadoSchema = new Schema({
     empApellido: {type: String, required: true},
     empLegajo: {type: Number, required: true},
     empNombre: {type:String, required: true},
     empEmail: {type:String, required:true},
-    dependecia: {type: Schema.Types.ObjectId, ref: Dependecia, required:true}
+    dependencias: [{type: Dependencia.schema}]
 })
 module.exports = mongoose.models.Empleado || mongoose.model('Empleado', EmpleadoSchema);
