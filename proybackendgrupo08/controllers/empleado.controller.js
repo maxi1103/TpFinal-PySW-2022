@@ -3,7 +3,7 @@ const Dependencia = require('../models/dependencia');
 const empleadoCtrl = {}
 
  empleadoCtrl.getEmpleados = async (req, res) => {
-    var empleados = await Empleado.find();
+    var empleados = await Empleado.find().populate('dependencias');
     res.json(empleados);
 }
 
@@ -22,7 +22,7 @@ const empleadoCtrl = {}
 }
 
  empleadoCtrl.getEmpleado = async (req, res) => {
-    const empleado = await Empleado.findById(req.params.id);
+    const empleado = await Empleado.findById(req.params.id).populate('dependencias');;
     res.json(empleado);
 }
 

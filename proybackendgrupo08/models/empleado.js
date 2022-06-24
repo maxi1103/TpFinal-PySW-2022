@@ -6,6 +6,7 @@ const EmpleadoSchema = new Schema({
     empLegajo: {type: Number, required: true},
     empNombre: {type:String, required: true},
     empEmail: {type:String, required:true},
-    dependencias: [{type: Dependencia.schema}]
+    dependencias:[{type: Schema.Types.ObjectId,
+        ref: Dependencia }]
 })
 module.exports = mongoose.models.Empleado || mongoose.model('Empleado', EmpleadoSchema);
