@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './component/login/login.component';
+import { HeaderComponent } from './component/header/header.component';
+import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmpleadoFormComponent } from './components/empleado-form/empleado-form.component';
-import { HeaderComponent } from './components/layout/header/header.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { ReunionFormComponent } from './components/reunion-form/reunion-form.component';
+import { UsuarioService } from './service/usuario.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    HeaderComponent,
     EmpleadoFormComponent,
     HeaderComponent,
     FooterComponent,
@@ -23,9 +27,13 @@ import { ReunionFormComponent } from './components/reunion-form/reunion-form.com
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
+   
   ],
-  providers: [],
+  providers: [
+    UsuarioService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
