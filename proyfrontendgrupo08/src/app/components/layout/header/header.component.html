@@ -13,7 +13,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="formEmpleado">Alta Empleado</a></li>
-              <li><a class="dropdown-item " href="tablaEmpleado">Tabla de Empleados</a></li>
+              <li><a class="dropdown-item " href="#">Tabla de Empleados</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -22,18 +22,19 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="formReunion">Alta Reunion</a></li>
-              <li><a class="dropdown-item " href="tablaEmpleado">Tabla de Reuniones</a></li>
+              <li><a class="dropdown-item " href="#">Tabla de Reuniones</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-              <a class="nav-link " [routerLink]="['login']" routerLinkActive="ruta-activa">Logearse</a>
-          </li>
         </ul>
+        <div *ngIf="!loginService.userLoggedIn()">
+          <button class="btn btn-warning" [routerLink]="['login']" routerLinkActive="ruta-activa">Iniciar Sesion</button>
+        </div>
         <div *ngIf="loginService.userLoggedIn()">  
-          <a *ngIf="!loginService.userLoggedIn()" [routerLink]="['login']">(Login)</a>
-          <a *ngIf="loginService.userLoggedIn()" [routerLink]="['login']" (click)="logout()">
-            {{loginService.userLogged()}} (logout)
-          </a>
+          <!-- <a *ngIf="!loginService.userLoggedIn()" [routerLink]="['login']">(Login)</a> -->
+          Usuario: {{loginService.userLogged()}} ({{loginService.userPerfil()}})
+          <button class="btn btn-warning ms-2" [routerLink]="['login']" (click)="logout()">
+             Cerrar Sesion
+          </button>
         </div>
       </div>
     </div>
