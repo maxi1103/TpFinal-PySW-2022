@@ -13,7 +13,7 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'formEmpleado',component:EmpleadoFormComponent},
   {path:'formReunion',component:ReunionFormComponent},
-  {path:'**',pathMatch:'full',redirectTo:'login'}
+  {path:'**',pathMatch:'full',redirectTo:'home'}
 ];
 
 @NgModule({
