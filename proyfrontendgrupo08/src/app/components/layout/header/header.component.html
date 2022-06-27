@@ -1,8 +1,8 @@
-<header class="p-3 bg-dark text-white mb-3 row">
+<header class="p-2 bg-dark text-white mb-3 row">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a class="navbar-brand" href="#">
-          <img src="./assets/dn.ico" alt="" width="30" height="35">
+          <img src="./assets/dn.ico" alt="" width="33" height="35">
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -41,8 +41,8 @@
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
            
-            <li><a class="dropdown-item disabled" disabled >Usuario : {{loginService.userLogged()}} </a></li>
-            <li><a class="dropdown-item disabled" disabled >{{loginService.userPerfil()}}</a></li>
+            <li><a class="dropdown-item disabled" disabled >Nombre : {{loginService.userLogged()}} </a></li>
+            <li><a class="dropdown-item disabled" disabled >Perfil: {{loginService.userPerfil()}}</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item"  [routerLink]="['login']" (click)="logout()">Cerrar Sesion</a></li>
           </ul>
