@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Empleado } from 'src/app/models/empleado';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
 
 @Component({
   selector: 'app-usuario-form',
@@ -27,7 +29,13 @@ export class UsuarioFormComponent implements OnInit {
       result=>{
         if(result.status=="1"){
           this.save=true;
-          alert("Usuario creado correctamente!")
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Usuario creado correctamente!',
+            showConfirmButton: false,
+            timer: 1800
+          });
           this.router.navigate(['login']);
         }
       },
@@ -35,6 +43,13 @@ export class UsuarioFormComponent implements OnInit {
         if(error.status=="0"){
           this.save=false;
           console.log(error.msg);
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Algo salio muy mal!',
+            showConfirmButton: false,
+            timer: 1800
+          });
         }
       }
     )

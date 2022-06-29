@@ -12,6 +12,17 @@ import { ReunionFormComponent } from './components/reunion-form/reunion-form.com
 import { UsuarioService } from './service/usuario.service';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin,
+  timeGridPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -22,7 +33,8 @@ import { UsuarioFormComponent } from './components/usuario-form/usuario-form.com
     FooterComponent,
     HomeComponent,
     ReunionFormComponent,
-    UsuarioFormComponent
+    UsuarioFormComponent,
+    CalendarioComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +42,7 @@ import { UsuarioFormComponent } from './components/usuario-form/usuario-form.com
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-   
+    FullCalendarModule
   ],
   providers: [
     UsuarioService

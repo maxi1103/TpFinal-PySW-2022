@@ -6,6 +6,7 @@ import { EmpleadoFormComponent } from './components/empleado-form/empleado-form.
 import { HomeComponent } from './components/home/home.component';
 import { ReunionFormComponent } from './components/reunion-form/reunion-form.component';
 import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'formEmpleado',component:EmpleadoFormComponent},
   {path:'formReunion',component:ReunionFormComponent},
+  {path:'calendario', component:CalendarioComponent},
   {path:'**',pathMatch:'full',redirectTo:'home'}
 ];
 

@@ -2,6 +2,7 @@ import { Oficina } from "./oficina"
 import { Recurso } from "./recurso"
 
 export class Reunion {
+    _id!:string;
     fecha!:Date;
     horaInicio!:string;
     horaFin!:string;
