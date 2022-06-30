@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-12 col-md-12">
+        <div>
+            <h3>Reuniones</h3>
+            <table>
+               <table class="table table-responsive table-bordered">
+                   <thead>
+                     <tr>
+                       <th scope="col">Fecha Establecida</th>
+                       <th scope="col">Hora de Inicio</th>
+                       <th scope="col">Hora de Fin</th>
+                       <th scope="col">Oficina Nro</th>
+                       <th scope="col">Tipo de Reunion</th>
+                       <th scope="col">Estado de la Reunion</th>
+                       <th scope="col">Recrursos</th>
+                       <th scope="col">Participantes</th>
+
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr *ngFor="let reu of reuniones">
+                       <td>{{reu.fecha }}</td>
+                       <td>{{reu.horaInicio}}</td>
+                       <td>{{reu.horaFin}}</td>
+                       <td>{{reu.oficina.numero}}</td>
+                       <td>{{reu.tipoReunion}}</td>
+                       <td>{{reu.estadoReunion}}</td>
+                       <td><li *ngFor="let recu of reu.recursos">{{recu.recurso}}</li></td>
+                       <td><li *ngFor="let emp of reu.participantes">{{emp.empNombre}} {{emp.empApellido}}</li></td> 
+
+                       <td>
+                           <button type="button" class="btn btn-secondary" (click)="eliminarReunion(reu._id)" >Eliminar Reunion</button>
+                           <button type="button" class="btn btn-secondary" (click)="editarReunion(reu._id)">Modificar Reunion</button> 
+                         </td>
+                       
+                     </tr> 
+                   </tbody>
+                   </table>
+            </table>
+           </div>
+
+    </div>
+</div>

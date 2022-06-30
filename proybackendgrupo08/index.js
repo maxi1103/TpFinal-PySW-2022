@@ -16,7 +16,11 @@ app.use(cors({origin: 'http://localhost:4200'}));
 app.use('/api/empleado', require('./routes/empleado.route.js'));
 app.use('/api/usuario', require('./routes/usuario.route'));
 app.use('/api/dependencia', require('./routes/dependencia.route'));
+app.use('/api/reunion/',require('./routes/reunion.route'));
+app.use('/api/oficina/',require('./routes/oficina.route'));
+app.use('/api/recurso/',require('./routes/recurso.route'));
 app.use('/api/correo', require('./routes/correo.route'));
+
 //setting
 app.set('port', process.env.PORT || 3000);
 //starting the server
