@@ -1,61 +1,114 @@
 <div class="row justify-content-center">
     <div class="col-12 col-md-6">
-        <h1>Formulario de Empleado</h1>
+        <h1>Formulario de Reunion</h1>
         <form action="" class="border border-dark p-3" #reunionForm="ngForm">
-            <div class="form-group">
+             <div class="form-group mb-3">
                 <label for="fecha" class="mt-3">Fecha:</label>
-                <input type="date" class="form-control"><!-- [(ngModel)]="reunion.fecha" name="fecha" id="fecha" #fecha="ngModel" required -->
-                <!-- <div *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)" class="alert alert-danger">
-                    <div *ngIf="fecha.errors?.['required']">Campo Obligatorio!</div>
-                </div> -->
+                <input type="date" class="form-control" name="fecha" id="fecha" [(ngModel)]="reunion.fecha">
+                
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="horaInicio" class="mt-3">Hora de Inicio</label>
-                <input type="text" class="form-control"> <!-- [(ngModel)]="reunion.horaInicio" name="horaInicio" id="horaInicio" #horaInicio="ngModel" required -->
-                <!-- <div *ngIf="horaInicio.invalid && (horaInicio.dirty || horaInicio.touched)" class="alert alert-danger">
-                    <div *ngIf="horaInicio.errors?.['required']">Campo Obligatorio!</div>
-                </div> -->
+                <input type="time" class="form-control" name="horaInicio" id="horaInicio" [(ngModel)]="reunion.horaInicio"> 
+                
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="horaFin" class="mt-3">Hora de Finalizacion</label>
-                <input type="text" class="form-control"> <!-- [(ngModel)]="reunion.horaFin" name="horaFin" id="horaFin" #horaFin="ngModel" -->
-                <!-- <div *ngIf="horaFin.invalid && (horaFin.dirty || horaFin.touched)" class="alert alert-danger">
-                    <div *ngIf="horaFin.errors?.['required']">Campo Obligatorio!</div>
-                </div> -->
+                <input type="time" class="form-control" name="horaFin" id="horaFin" [(ngModel)]="reunion.horaFin"> 
+             
 
+          </div>
+            <div class="form-group mb-3">
+                <label for="categoria" class="form-label">Seleccione cualquiera de las oficinas disponibles</label>
+                <select class="form-select" name="oficina" id="oficina" [(ngModel)]="reunion.oficina">
+                    <option [ngValue]="ofi" *ngFor="let ofi of oficinas">Oficina Numero: {{ofi.numero}}, Capacidad: {{ofi.capacidad}}</option>
+                </select>
             </div>
-            <div class="form-group">
-                <label for="oficina" class="mt-3">Oficina</label>
-                <input type="text" class="form-control" ><!-- [(ngModel)]="reunion.oficina" name="oficina" id="oficina" #oficina="ngModel" -->
-                <!-- <div *ngIf="oficina.invalid && (oficina.dirty || oficina.touched)" class="alert alert-danger">
-                    <div *ngIf="oficina.errors?.['required']">Campo Obligatorio!</div>
-                </div> -->
-            </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="tipoReunion" class="mt-3">Tipo de Reunion</label>
-                <input type="text" class="form-control" ><!-- [(ngModel)]="reunion.tipoReunion" name="tipoReunion" id="tipoReunion" #tipoReunion="ngModel" -->
-                <!-- <div *ngIf="tipoReunion.invalid && (tipoReunion.dirty || tipoReunion.touched)" class="alert alert-danger">
-                    <div *ngIf="tipoReunion.errors?.['required']">Campo Obligatorio!</div>
-                </div> -->
+                <select class="form-select" name="tipoReunion" id="tipoReunion" [(ngModel)]="reunion.tipoReunion">
+                  <option value="Urgente">Urgente</option>
+                  <option value="Alta">Alta</option>
+                  <option value="Normal">Normal</option>
+                </select>              
             </div>
-            <div class="form-group">
-                <label for="estadoReunion" class="mt-3">Estado</label>
-                <input type="text" class="form-control" ><!-- [(ngModel)]="reunion.estadoReunion" name="estadoReunion" id="estadoReunion" #estadoReunion="ngModel" -->
-                <!-- <div *ngIf="estadoReunion.invalid && (estadoReunion.dirty || estadoReunion.touched)" class="alert alert-danger">
-                    <div *ngIf="estadoReunion.errors?.['required']">Campo Obligatorio!</div>
-                </div> -->
-            </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="recursos" class="mt-3">Recursos</label>
-                <input type="text" class="form-control" ><!-- [(ngModel)]="reunion.recursos" name="recursos" id="recursos" #recursos="ngModel" -->
-                <!-- <div *ngIf="recursos.invalid && (recursos.dirty || recursos.touched)" class="alert alert-danger">
-                    <div *ngIf="recursos.errors?.['required']">Campo Obligatorio!</div>
-                </div> -->
+                <select class="form-select" name="recurso" id="recurso" [(ngModel)]="recurso">
+                    <option [ngValue]="recu" *ngFor="let recu of recursos">{{recu.recurso}}</option>
+                </select>
+                <button class="btn btn-primary m-3" type="button" (click)="agregarRecursos(recurso)">Agregar</button>
             </div>
-            
-            <button type="submit" class="btn btn-primary mt-4 mb-3" (click)="altaReunion()" [disabled]="reunionForm.invalid">Guardar</button>
+            <div *ngIf="recursosAgregar.length!=0">
+              <h5>Recursos de la Reunion: </h5>
+                <table>
+                   <table class="table table-responsive table-bordered">
+                       <thead>
+                         <tr>
+                           <th scope="col">Tipo de Recurso</th>
+                           <th scope="col">Recurso</th>
+                           <th scope="col">Disponible?</th>
+                           <th scope="col">Accioness</th>
+                         </tr>
+                       </thead>
+                       <tbody>
+                         <tr *ngFor="let recur of recursosAgregar">
+                            <td>{{recur.recurso}}</td>
+                           <td>{{recur.tipoRecurso}}</td>
+                           <td>{{recur.disponible | siNo}}</td>
+                           <td>
+                               <button type="button" class="btn btn-secondary" (click)="quitarRecursos(recur)">Quitar Recurso</button> 
+                             </td>
+                           
+                         </tr>
+                       </tbody>
+                       </table>
+                </table>
+               </div>
+            <div class="form-group mb-3">
+                <label for="recursos" class="mt-3">Participantes</label>
+                <select class="form-select" name="participantes" id="participantes" [(ngModel)]="participante">
+                    <option [ngValue]="par" *ngFor="let par of participantes">{{par.empNombre}}</option>
+                </select>
+                <button class="btn btn-primary m-3" type="button" (click)="agregarParticipantes(participante)">Agregar</button>
+            </div>
+            <div *ngIf="participantesAgregar.length!=0">
+                <h5>Participantes de la Reunion: </h5>
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">Empleado Legajo</th>
+                        <th scope="col">Empleado Apellido</th>
+                        <th scope="col">Empleaod Nombre</th>
+                        <th scope="col">Empleado Email</th>
+                        <th scope="col">Empleado Dependencias</th>
+                        <th scope="col">Acciones</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let part of participantesAgregar">
+                        
+                        <td>{{part.empLegajo}}</td>
+                        <td>{{part.empApellido}}</td>
+                        <td>{{part.empNombre}}</td>
+                        <td>{{part.empEmail}}</td>
+                        <td>{{part.empDependencia}}</td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" (click)="quitarParticipante(part)">Quitar Participante</button> 
+                          </td>
+                        
+                      </tr>
+                    </tbody>
+                    </table>
+             
+            </div>
+            <button *ngIf="accion=='new'" type="submit" class="btn btn-primary mt-4 mb-3" (click)="altaReunion()" [disabled]="reunionForm.invalid">Guardar</button>
+            <button *ngIf="accion=='update'" type="submit" class="btn btn-primary mt-4 mb-3" (click)="actualizarReunion()">Actualizar Reunion</button>
+             
         </form>
-        <div *ngIf="save" class="alert alert-success">Empleado guardado correctamente!!</div>
+    
     </div>
-</div>
+</div>  
+
 

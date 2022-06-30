@@ -7,8 +7,11 @@ router.get('/', reunionCtrl.getReuniones);
 router.post('/', reunionCtrl.createReunion);
 router.get('/:id', reunionCtrl.getReunion);
 router.put('/:id', reunionCtrl.editReunion);
+router.delete('/:id',reunionCtrl.deleteReunion);
 router.put('/:id/recurso/:idrecurso', reunionCtrl.addRecurso);
-router.delete('/:id/recurso/:idrecurso',reunionCtrl.deleteRecurso)
+router.delete('/:id/recurso/:idrecurso',reunionCtrl.deleteRecurso);
+router.put('/:id/participante/:idparticipante',reunionCtrl.addParticipante);
+router.delete('/:id/participante/:idparticipante',reunionCtrl.deleteParticipante);
 
 //exportamos el modulo de rutas
 module.exports = router;

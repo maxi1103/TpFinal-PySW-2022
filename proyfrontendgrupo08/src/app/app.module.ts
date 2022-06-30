@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { ReunionFormComponent } from './components/reunion-form/reunion-form.component';
 import { UsuarioService } from './service/usuario.service';
 import { HeaderComponent } from './components/layout/header/header.component';
+import { SiNoPipe } from './pipes/si-no.pipe';
+import { ReunionTablaComponent } from './components/reunion-tabla/reunion-tabla.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { HeaderComponent } from './components/layout/header/header.component';
     EmpleadoFormComponent,
     FooterComponent,
     HomeComponent,
-    ReunionFormComponent
+    ReunionFormComponent,
+    SiNoPipe,
+    ReunionTablaComponent
   ],
   imports: [
     BrowserModule,
