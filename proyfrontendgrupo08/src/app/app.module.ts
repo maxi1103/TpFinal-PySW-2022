@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ReunionFormComponent } from './components/reunion-form/reunion-form.component';
 import { UsuarioService } from './service/usuario.service';
 import { HeaderComponent } from './components/layout/header/header.component';
+import { EmpleadoComponent } from './components/empleado/empleado.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HeaderComponent } from './components/layout/header/header.component';
     EmpleadoFormComponent,
     FooterComponent,
     HomeComponent,
-    ReunionFormComponent
+    ReunionFormComponent,
+    EmpleadoComponent
   ],
   imports: [
     BrowserModule,

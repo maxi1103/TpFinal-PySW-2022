@@ -1,0 +1,47 @@
+<div class="row">
+    <h3 class="col-12 text-center text-primary text-decoration-underline">LISTADO DE EMPLEADOS</h3>
+</div>
+
+<div class="row mb-2">
+    <div class="col-12">
+        <button class="btn btn-primary" (click)="agregarEmpleado()">AGREGAR</button>
+    </div>
+</div>
+
+<table  class="table table-striped border border-1">
+    <thead>
+    <tr>
+        <th style="width: 20%">
+            Legajo 
+        </th>
+        <th style="width: 20%">
+            Apellido
+        </th>
+        <th style="width: 20%">
+            Nombre
+        </th>
+        <th style="width: 20%">
+            Email
+        </th> 
+        <th style="width: 20%">
+            Dependencia
+        </th>     
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of empleados">
+        <td>${{item.legajo}}</td>
+        <td>{{item.apellido}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.dependencia.nombre}}</td>
+      
+        <td>
+            <button class="btn btn-primary  mt-4 mb-3" (click)="modificarEmpleado(item)">MOD</button>
+            <button class="btn btn-primary  mt-4 mb-3" (click)="eliminarEmpleado(item)">BORRAR</button>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
