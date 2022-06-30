@@ -25,7 +25,7 @@ import { UsuarioFormComponent } from './components/usuario-form/usuario-form.com
     HomeComponent,
     ReunionFormComponent,
     SiNoPipe,
-    ReunionTablaComponent
+    ReunionTablaComponent,
     UsuarioFormComponent
   ],
   imports: [

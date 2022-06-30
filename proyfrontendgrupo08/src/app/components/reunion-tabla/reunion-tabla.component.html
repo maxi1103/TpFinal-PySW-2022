@@ -26,7 +26,7 @@
                        <td>{{reu.tipoReunion}}</td>
                        <td>{{reu.estadoReunion}}</td>
                        <td><li *ngFor="let recu of reu.recursos">{{recu.recurso}}</li></td>
-                       <td><li *ngFor="let emp of reu.participantes">{{emp.empNombre}} {{emp.empApellido}}</li></td> 
+                       <td><li *ngFor="let emp of reu.participantes">{{emp.Nombre}} {{emp.Apellido}}</li></td> 
 
                        <td>
                            <button type="button" class="btn btn-secondary" (click)="eliminarReunion(reu._id)" >Eliminar Reunion</button>

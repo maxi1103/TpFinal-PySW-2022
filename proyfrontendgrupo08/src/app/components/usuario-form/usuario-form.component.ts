@@ -27,7 +27,7 @@ export class UsuarioFormComponent implements OnInit {
       result=>{
         if(result.status=="1"){
           this.save=true;
-          alert("Usuario creado correctamente!")
+          alert("Usuario creado correctamente!");
           this.router.navigate(['login']);
         }
       },
