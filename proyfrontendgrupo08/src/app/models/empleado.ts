@@ -3,11 +3,11 @@ import { Dependencia } from "./dependencia";
 export class Empleado {
 
     _id!:string;
-    empLegajo!:number;
-    empApellido!:string;
-    empNombre!:string;
-    empEmail!:string;
-    empDependencia!:Array<Dependencia>;
+    Legajo!:number;
+    Apellido!:string;
+    Nombre!:string;
+    Email!:string;
+    Dependencias!:Array<Dependencia>;
 
     constructor(){
         

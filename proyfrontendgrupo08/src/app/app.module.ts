@@ -13,6 +13,7 @@ import { UsuarioService } from './service/usuario.service';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { SiNoPipe } from './pipes/si-no.pipe';
 import { ReunionTablaComponent } from './components/reunion-tabla/reunion-tabla.component';
+import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ReunionTablaComponent } from './components/reunion-tabla/reunion-tabla.
     ReunionFormComponent,
     SiNoPipe,
     ReunionTablaComponent
+    UsuarioFormComponent
   ],
   imports: [
     BrowserModule,
