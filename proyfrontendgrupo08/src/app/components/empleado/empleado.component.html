@@ -11,7 +11,7 @@
 <table  class="table table-striped border border-1">
     <thead>
     <tr>
-        <th style="width: 20%">
+        <th style="width: 10%">
             Legajo 
         </th>
         <th style="width: 20%">
@@ -25,7 +25,10 @@
         </th> 
         <th style="width: 20%">
             Dependencia
-        </th>     
+        </th>   
+        <th style="width: 10%">
+            Acciones
+        </th>   
     </tr>
     </thead>
     <tbody>
@@ -34,7 +37,7 @@
         <td>{{item.apellido}}</td>
         <td>{{item.nombre}}</td>
         <td>{{item.email}}</td>
-        <td>{{item.dependencia.nombre}}</td>
+        <td>{{item.dependencias.nombre}}</td>
       
         <td>
             <button class="btn btn-primary  mt-4 mb-3" (click)="modificarEmpleado(item)">MOD</button>
