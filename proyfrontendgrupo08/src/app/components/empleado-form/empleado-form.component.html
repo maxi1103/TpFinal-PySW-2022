@@ -4,7 +4,7 @@
         <form action="" class="border border-dark p-3" #empleadoForm="ngForm">
             <div class="form-group">
                 <label for="legajo" class="mt-3">Legajo:</label>
-                <input type="number" class="form-control" [(ngModel)]="empleado.legajo" name="legajo" id="legajo"
+                <input type="number" class="form-control" [(ngModel)]="empleado.Legajo" name="legajo" id="legajo"
                     #legajo="ngModel" required>
                 <div *ngIf="legajo.invalid && (legajo.dirty || legajo.touched)" class="alert alert-danger">
                     <div *ngIf="legajo.errors?.['required']">Campo Obligatorio!</div>
@@ -12,7 +12,7 @@
             </div>
             <div class="form-group">
                 <label for="apellido" class="mt-3">Apellido:</label>
-                <input type="text" class="form-control" [(ngModel)]="empleado.apellido" name="apellido" id="apellido"
+                <input type="text" class="form-control" [(ngModel)]="empleado.Apellido" name="apellido" id="apellido"
                     #apellido="ngModel" required>
                 <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)" class="alert alert-danger">
                     <div *ngIf="apellido.errors?.['required']">Campo Obligatorio!</div>
@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label for="nombre" class="mt-3">Nombre</label>
-                <input type="text" class="form-control" [(ngModel)]="empleado.nombre" name="nombre" id="nombre"
+                <input type="text" class="form-control" [(ngModel)]="empleado.Nombre" name="nombre" id="nombre"
                     #nombre="ngModel" required>
                 <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
                     <div *ngIf="nombre.errors?.['required']">Campo Obligatorio!</div>
@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label for="email" class="mt-3">Email</label>
-                <input type="text" class="form-control" [(ngModel)]="empleado.email" name="email" id="email"
+                <input type="text" class="form-control" [(ngModel)]="empleado.Email" name="email" id="email"
                     #email="ngModel" required>
                 <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
                     <div *ngIf="email.errors?.['required']">Campo Obligatorio!</div>
@@ -38,7 +38,7 @@
                 <label for="dependencia" class="mt-3">Dependencia</label>
                 <div class="form-check">
                     <input class="form-check-input" type="empleado" id="empleado" required>
-                    <select class="form-select" name="empleado" [(ngModel)]="empleado.dependencias">
+                    <select class="form-select" name="empleado" [(ngModel)]="empleado.Dependencias">
 
                         <option *ngFor="let dependencia of listaDependencias" [ngValue]="dependencia">
                             {{dependencia.nombre}}

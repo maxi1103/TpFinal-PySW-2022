@@ -8,6 +8,7 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-empleado-form',
@@ -26,6 +27,7 @@ export class EmpleadoFormComponent implements OnInit {
       private activatedRoute: ActivatedRoute,
       private dependenciaService: DependenciaService,
       private empleadoService:EmpleadoService) {
+      this.empleado = new Empleado();  
 
     if(!this.usuarioService.userLoggedIn()){
       Swal.fire({
@@ -114,7 +116,7 @@ export class EmpleadoFormComponent implements OnInit {
       result => {
         Object.assign(this.empleado, result);
       console.log(result);
-            this.empleado.dependencias= this.listaDependencias.find(item => (item._id == this.empleado.dependencias._id))!;
+            //this.empleado.Dependencias= this.listaDependencias.find(item => (item._id == this.empleado.Dependencias._id))!;
           },
       error => {
         console.log(error);

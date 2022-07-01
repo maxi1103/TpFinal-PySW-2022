@@ -39,13 +39,13 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FooterComponent,
     HomeComponent,
     ReunionFormComponent,
-    EmpleadoComponent
+    EmpleadoComponent,
     UsuarioFormComponent,
     CalendarioComponent,
     SiNoPipe,
     ReunionTablaComponent,
     UsuarioFormComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
     ResumenComponent
   ],
   imports: [
