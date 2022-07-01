@@ -49,4 +49,8 @@ export class ReunionTablaComponent implements OnInit {
   editarReunion(_id:string){
     this.route.navigate(['formReunion',_id]);
   }
+  
+  imprimirPDF(_id:string){
+    this.route.navigate(['resumen',_id]);
+  }
 }

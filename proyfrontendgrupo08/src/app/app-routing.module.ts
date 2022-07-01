@@ -8,6 +8,7 @@ import { ReunionFormComponent } from './components/reunion-form/reunion-form.com
 import { ReunionTablaComponent } from './components/reunion-tabla/reunion-tabla.component';
 import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
+import { ResumenComponent } from './components/resumen/resumen.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'calendario', component:CalendarioComponent},
   {path:'formReunion/:id',component:ReunionFormComponent},
   {path:'tablaReunion',component:ReunionTablaComponent},
+  {path:'resumen/:id',component:ResumenComponent},
   {path:'**',pathMatch:'full',redirectTo:'home'}
 ];
 
