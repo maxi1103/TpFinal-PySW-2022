@@ -19,6 +19,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { ResumenComponent } from './components/resumen/resumen.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -38,7 +39,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     UsuarioFormComponent,
     CalendarioComponent,
     SiNoPipe,
-    ReunionTablaComponent
+    ReunionTablaComponent,
+    ResumenComponent
   ],
   imports: [
     BrowserModule,
