@@ -30,7 +30,13 @@ export class UsuarioService {
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("perfil");
     sessionStorage.removeItem("userid");
+    sessionStorage.removeItem("idEmp");
   } 
+
+  public getIdEmp(){
+    var idempleado = sessionStorage.getItem("idEmp");
+    return idempleado;
+  }
 
   public userLoggedIn(){
       var resultado = false;
