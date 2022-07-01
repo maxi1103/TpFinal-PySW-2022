@@ -6,6 +6,8 @@ import { DependenciaService } from 'src/app/service/dependencia.service';
 import { EmpleadoService } from 'src/app/service/empleado.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
 
 @Component({
   selector: 'app-empleado-form',
@@ -20,17 +22,26 @@ export class EmpleadoFormComponent implements OnInit {
   accion = "";
 
   constructor(private usuarioService:UsuarioService,
-     private router:Router,
-    private activatedRoute: ActivatedRoute,
-    private dependenciaService: DependenciaService,
-    private empleadoService:EmpleadoService) {
+      private router:Router,
+      private activatedRoute: ActivatedRoute,
+      private dependenciaService: DependenciaService,
+      private empleadoService:EmpleadoService) {
 
     if(!this.usuarioService.userLoggedIn()){
-      alert("Debe validarse e ingresar su usuario y clave");
+      Swal.fire({
+        icon: 'error',
+        title: 'Acceso denegado',
+        text: 'Necesita iniciar sesion!'
+      })
       this.router.navigate(['login']); 
     }else{
       if(this.usuarioService.userPerfil()!="Administrador"){
-        alert("Acceso prohibido");
+        Swal.fire({
+          icon: 'error',
+          title: 'Acceso Prohibido...',
+          text: 'No tiene los permisos necesarios!'
+        })
+
         this.router.navigate(['home']);
       }
     }

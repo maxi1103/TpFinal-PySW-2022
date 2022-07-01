@@ -1,7 +1,7 @@
 export class Dependencia {
 
     _id!:string;
-    depTipoDependencia!:string;
+    nombre!:string;
 
     constructor(){
         

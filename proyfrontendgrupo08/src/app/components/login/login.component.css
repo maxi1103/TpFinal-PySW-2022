@@ -1,0 +1,11 @@
+.img{
+    width: 100%;
+    height: auto;
+    border-bottom-left-radius: 40px;
+    border-top-left-radius: 40px;
+}
+
+.borde{
+    border-bottom-left-radius: 40px;
+    border-top-left-radius: 40px;
+}

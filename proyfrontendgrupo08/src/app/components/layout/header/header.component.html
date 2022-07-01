@@ -1,39 +1,54 @@
-<header class="p-3 bg-dark text-white mb-3 row">
+<header class="p-2 bg-dark text-white mb-3 row">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        <a class="navbar-brand">
+          <img src="./assets/dn.ico" alt="" width="33" height="35">
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="home" class="nav-link px-2 text-white">Inicio</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Gestion de Empleados
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="formEmpleado">Alta Empleado</a></li>
-              <li><a class="dropdown-item " href="empleado">Tabla de Empleados</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Gestion de Reuniones
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="formReunion">Alta Reunion</a></li>
-              <li><a class="dropdown-item " href="tablaEmpleado">Tabla de Reuniones</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link " [routerLink]="['login']" routerLinkActive="ruta-activa">Logearse</a>
-          </li>
+          <div *ngIf="loginService.userLoggedIn()&&loginService.userPerfil()=='Administrador'">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Gestion de Empleados
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="formEmpleado">Alta Empleado</a></li>
+                <li><a class="dropdown-item " href="empleado">Tabla de Empleados</a></li>
+              </ul>
+            </li>
+          </div>
+          <div *ngIf="loginService.userLoggedIn()&&loginService.userPerfil()=='Administrador'">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Gestion de Reuniones
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="formReunion/0">Alta Reunion</a></li>
+                <li><a class="dropdown-item " href="tablaReunion">Tabla de Reuniones</a></li>
+                <li><a class="dropdown-item " href="estadisticas">Estadisticas</a></li>
+              </ul>
+            </li>
+          </div>
+          <div *ngIf="loginService.userLoggedIn()">
+            <li><a href="calendario" class="nav-link px-2 text-white">Calendario</a></li>
+          </div>  
         </ul>
-        <div *ngIf="loginService.userLoggedIn()">  
-          <a *ngIf="!loginService.userLoggedIn()" [routerLink]="['login']">(Login)</a>
-          <a *ngIf="loginService.userLoggedIn()" [routerLink]="['login']" (click)="logout()">
-            {{loginService.userLogged()}} (logout)
+        <div *ngIf="!loginService.userLoggedIn()">
+          <button class="p-1 me-2  btn btn-outline-light" [routerLink]="['login']" routerLinkActive="ruta-activa">Iniciar Sesion</button>
+          <button class="p-1 btn btn-warning" (click)="usuarioForm()">Registrarse</button>
+        </div>
+
+        <div class="dropdown text-end" *ngIf="loginService.userLoggedIn()">
+          <a href="#" class="d-block link-dark text-decoration-none text-white dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="./assets/person.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1"> 
+            <li><a class="dropdown-item disabled" disabled >Nombre : {{loginService.userLogged()}} </a></li>
+            <li><a class="dropdown-item disabled" disabled >Perfil: {{loginService.userPerfil()}}</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item"  [routerLink]="['login']" (click)="logout()">Cerrar Sesion</a></li>
+          </ul>
         </div>
       </div>
     </div>

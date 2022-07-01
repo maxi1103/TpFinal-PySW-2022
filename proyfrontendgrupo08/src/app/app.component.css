@@ -1,5 +1,5 @@
 .body{
     position:relative;
-    padding-bottom: 3em;
+    margin-bottom: 0;
     min-height: 100vh;
 }

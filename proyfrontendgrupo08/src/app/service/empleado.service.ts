@@ -1,3 +1,4 @@
+
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,6 +8,7 @@ import { Empleado } from '../models/empleado';
   providedIn: 'root'
 })
 export class EmpleadoService {
+
   urlBase:string="http://localhost:3000/api/";
 
   constructor(private _http:HttpClient) { }
@@ -64,7 +66,4 @@ export class EmpleadoService {
       };
       return this._http.get(this.urlBase+ "empleado",httpOptions);
   }
-
-
-
 }

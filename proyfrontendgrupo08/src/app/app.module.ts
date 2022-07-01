@@ -12,6 +12,23 @@ import { ReunionFormComponent } from './components/reunion-form/reunion-form.com
 import { UsuarioService } from './service/usuario.service';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { EmpleadoComponent } from './components/empleado/empleado.component';
+import { SiNoPipe } from './pipes/si-no.pipe';
+import { ReunionTablaComponent } from './components/reunion-tabla/reunion-tabla.component';
+import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
+import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import { ResumenComponent } from './components/resumen/resumen.component';
+
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin,
+  timeGridPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -23,6 +40,13 @@ import { EmpleadoComponent } from './components/empleado/empleado.component';
     HomeComponent,
     ReunionFormComponent,
     EmpleadoComponent
+    UsuarioFormComponent,
+    CalendarioComponent,
+    SiNoPipe,
+    ReunionTablaComponent,
+    UsuarioFormComponent,
+    EstadisticasComponent
+    ResumenComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +54,7 @@ import { EmpleadoComponent } from './components/empleado/empleado.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-   
+    FullCalendarModule
   ],
   providers: [
     UsuarioService

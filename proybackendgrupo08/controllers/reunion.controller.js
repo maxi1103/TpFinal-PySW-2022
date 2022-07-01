@@ -1,9 +1,10 @@
 const Reunion= require ('../models/reunion');
 const Recurso= require ('../models/recurso')
+const Participante= require ('../models/empleado');
 const reunionCtrl={}
 
 reunionCtrl.getReuniones= async (req,res)=>{
-    var reunion= await Reunion.find().populate('recursos').populate('oficina');
+    var reunion= await Reunion.find().populate('recursos').populate('oficina').populate('participantes');
     res.json(reunion);
 }
 reunionCtrl.createReunion= async(req,res)=>{
@@ -26,7 +27,7 @@ reunionCtrl.createReunion= async(req,res)=>{
     }
 }
 reunionCtrl.getReunion = async(req,res)=>{
-    const reunion= await Reunion.findById(req.params.id);
+    const reunion= await Reunion.findById(req.params.id).populate('recursos').populate('oficina').populate('participantes');
     res.json(reunion);
 }
 reunionCtrl.editReunion = async (req, res) => {
@@ -43,8 +44,23 @@ reunionCtrl.editReunion = async (req, res) => {
     'msg': 'Error procesando la operacion'
     }) 
     }
-    
     }
+
+reunionCtrl.deleteReunion= async(req,res)=>{
+    try {
+        await Reunion.deleteOne({_id: req.params.id});
+        res.json({
+        status: '1',
+        msg: 'Reunion removed'
+        }) 
+    } catch (error) {
+        res.status(400).json({
+        'status': '0',
+        'msg': 'Error procesando la operacion'
+        }) 
+    }
+}
+
 reunionCtrl.addRecurso = async (req,res)=>{
     const idRecurso= req.params.idrecurso;
     const idReunion = req.params.id;
@@ -76,6 +92,46 @@ reunionCtrl.deleteRecurso= async(req,res)=>{
         res.status(200).json({
             status:1,
             msg:"Recurso Eliminado"
+        })
+    }
+    catch{
+        res.status(400).json({
+            status:0,
+            msg:"Error al procesar operacion"
+        })
+    }
+}
+reunionCtrl.addParticipante = async (req,res)=>{
+    const idParticipante= req.params.idparticipante;
+    const idReunion = req.params.id;
+    var reunion= await Reunion.findById(idReunion);
+    var participante=await Participante.findById(idParticipante);
+    console.log(req.params.idrecurso);
+    try{
+        reunion.participantes.push(participante);
+        reunion.save();
+        res.status(200).json({
+            status : 1,
+            msg: "Participante Agregado"
+        })
+    }catch{
+        res.status(400).json({
+            status: 0,
+            msg: "Error al procesar operacion"
+        })
+    }
+}
+reunionCtrl.deleteParticipante= async(req,res)=>{
+    const idReunion= req.params.id;
+    const reunion= await Reunion.findById(idReunion);
+    const idParticipante = req.params.idparticipante;
+
+    try{
+        reunion.participantes.pull(idParticipante);
+        await Reunion.updateOne({_id:idReunion},reunion);
+        res.status(200).json({
+            status:1,
+            msg:"Participante Eliminado"
         })
     }
     catch{

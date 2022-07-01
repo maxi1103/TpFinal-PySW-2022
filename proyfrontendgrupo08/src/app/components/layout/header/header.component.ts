@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public loginService: UsuarioService) { 
+  constructor(public loginService: UsuarioService,private router: Router) { 
 
   }
 
@@ -18,5 +19,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  usuarioForm(){
+    this.router.navigate(['formUsuario']);
+  }
 }
