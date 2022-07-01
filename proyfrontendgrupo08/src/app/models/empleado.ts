@@ -8,7 +8,6 @@ export class Empleado {
     Nombre!:string;
     Email!:string;
     Dependencias!:Array<Dependencia>;
-
     constructor(){
         
     }

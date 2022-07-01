@@ -11,14 +11,11 @@ import { FormsModule } from '@angular/forms';
 import { ReunionFormComponent } from './components/reunion-form/reunion-form.component';
 import { UsuarioService } from './service/usuario.service';
 import { HeaderComponent } from './components/layout/header/header.component';
+import { EmpleadoComponent } from './components/empleado/empleado.component';
 import { SiNoPipe } from './pipes/si-no.pipe';
 import { ReunionTablaComponent } from './components/reunion-tabla/reunion-tabla.component';
 import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
-<<<<<<< HEAD
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
-
-
-=======
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -26,12 +23,12 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { ResumenComponent } from './components/resumen/resumen.component';
 
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,
   timeGridPlugin
 ]);
->>>>>>> 02078415347b642c41d5919c53fd69c4b3564521
 
 @NgModule({
   declarations: [
@@ -42,16 +39,14 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FooterComponent,
     HomeComponent,
     ReunionFormComponent,
+    EmpleadoComponent
     UsuarioFormComponent,
     CalendarioComponent,
     SiNoPipe,
     ReunionTablaComponent,
-<<<<<<< HEAD
     UsuarioFormComponent,
     EstadisticasComponent
-=======
     ResumenComponent
->>>>>>> 02078415347b642c41d5919c53fd69c4b3564521
   ],
   imports: [
     BrowserModule,
@@ -59,12 +54,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-<<<<<<< HEAD
-    
-   
-=======
     FullCalendarModule
->>>>>>> 02078415347b642c41d5919c53fd69c4b3564521
   ],
   providers: [
     UsuarioService
