@@ -44,6 +44,9 @@ export class EstadisticasComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  /*
+  Dibujar la estadistica en Barra
+  */
  charBarra(datos:Array<number>,mostrar:Array<string>){
   if (this.chartBar) {
     this.chartBar.destroy();
@@ -76,6 +79,9 @@ export class EstadisticasComponent implements OnInit {
     }
 });
  }
+ /*
+  Dibujar la estadistica en torta
+ */
  charTorta(datos:Array<number>,mostrar:Array<string>){
   if (this.chartPie) {
     this.chartPie.destroy();
