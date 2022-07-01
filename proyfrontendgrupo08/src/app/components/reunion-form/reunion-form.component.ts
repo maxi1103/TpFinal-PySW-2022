@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Empleado } from 'src/app/models/empleado';
 import { Oficina } from 'src/app/models/oficina';
 import { Recurso } from 'src/app/models/recurso';
@@ -8,7 +8,8 @@ import { EmpleadoService } from 'src/app/service/empleado.service';
 import { OficinaService } from 'src/app/service/oficina.service';
 import { RecursoService } from 'src/app/service/recurso.service';
 import { ReunionService } from 'src/app/service/reunion.service';
-
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
 
 @Component({
   selector: 'app-reunion-form',
@@ -30,7 +31,7 @@ export class ReunionFormComponent implements OnInit {
  accion="";
 
   constructor(private oficinaService:OficinaService, private empleadoService:EmpleadoService,
-              private recursoService:RecursoService,private reunionService:ReunionService,private activatedRoute:ActivatedRoute ) { 
+              private recursoService:RecursoService,private reunionService:ReunionService,private activatedRoute:ActivatedRoute,private router:Router ) { 
     this.participantesAgregar= new Array<Empleado>();
     this.participantes= new Array<Empleado>();
     this.reunion= new Reunion();
@@ -52,20 +53,52 @@ export class ReunionFormComponent implements OnInit {
     
     ;
     if(this.comprobarParticipante()==false) {
-      alert("colision de participantes");
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Colision de participantes!',
+        showConfirmButton: false,
+        timer: 1500
+      });
     }else if(this.comprobarRecursos()==false){
-      alert("colision de recursos")
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Colision de recursos!',
+        showConfirmButton: false,
+        timer: 1500
+      });
     }else if(this.comprobarOficinas()==false){
-      alert("colision de oficina");
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Colision de oficina!',
+        showConfirmButton: false,
+        timer: 1500
+      });
     }else{
 
-    alert("reunion agregada correctamente");
     this.reunionService.addReunion(this.reunion).subscribe(
       result=>{
         console.log(result);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Reunion creada correctamente!',
+          showConfirmButton: false,
+          timer: 1800
+        });
+        this.router.navigate(['tablaReunion']);
       },
       error=>{
         console.log(error);
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'No pudo crearse la reunion!',
+          showConfirmButton: false,
+          timer: 1800
+        });
       }
     ) 
   }
@@ -280,37 +313,69 @@ export class ReunionFormComponent implements OnInit {
   this.recursos.splice(index,1);
 }
 quitarRecursos(recu:Recurso){
-this.recursosAgregar.splice(this.recursosAgregar.indexOf(recu),1);
-this.recursos.push(recu);
+  this.recursosAgregar.splice(this.recursosAgregar.indexOf(recu),1);
+  this.recursos.push(recu);
 }
 
 convertirHora(hora:string):Date{
-const [hour,minute]= hora.split(':');
-var oe = new Date();
-oe.setHours(+hour);
-oe.setMinutes(+minute);
-return oe;
-
+  const [hour,minute]= hora.split(':');
+  var oe = new Date();
+  oe.setHours(+hour);
+  oe.setMinutes(+minute);
+  return oe;
 }
 actualizarReunion(){
     this.reunion.participantes=this.participantesAgregar;
     this.reunion.recursos=this.recursosAgregar;
     this.reunion.estadoReunion="pendiente";
     if(this.comprobarParticipante()==false) {
-      alert("colision de participantes");
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Colision de participantes!',
+        showConfirmButton: false,
+        timer: 1500
+      });
     }else if(this.comprobarRecursos()==false){
-      alert("colision de recursos")
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Colision de recursos!',
+        showConfirmButton: false,
+        timer: 1500
+      });
     }else if(this.comprobarOficinas()==false){
-      alert("colision de oficina");
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Colision de oficina!',
+        showConfirmButton: false,
+        timer: 1500
+      });
     }else{
 
-    alert("reunion agregada correctamente");
+      
     this.reunionService.updateReunion(this.reunion).subscribe(
       result=>{
         console.log(result);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Reunion actualizada correctamente!',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.router.navigate(['tablaReunion']);
       },
       error=>{
         console.log(error);
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'No pudo actualizarse la reunion!',
+          showConfirmButton: false,
+          timer: 1500
+        });
       }
     ) 
   }

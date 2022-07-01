@@ -20,7 +20,7 @@ export class ReunionService {
         }),
         params: new HttpParams({})
     };
-    return this._http.post(this.hostBase,{
+    return this._http.post(this.hostBase,{titulo:reunion.titulo,
                                           fecha: reunion.fecha,
                                            horaInicio : reunion.horaInicio,
                                            horaFin : reunion.horaFin,
