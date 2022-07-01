@@ -44,7 +44,6 @@ reunionCtrl.editReunion = async (req, res) => {
     'msg': 'Error procesando la operacion'
     }) 
     }
-    
     }
 
 reunionCtrl.deleteReunion= async(req,res)=>{

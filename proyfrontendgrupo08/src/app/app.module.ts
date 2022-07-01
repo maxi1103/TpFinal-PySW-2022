@@ -14,6 +14,11 @@ import { HeaderComponent } from './components/layout/header/header.component';
 import { SiNoPipe } from './pipes/si-no.pipe';
 import { ReunionTablaComponent } from './components/reunion-tabla/reunion-tabla.component';
 import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
+<<<<<<< HEAD
+import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
+
+
+=======
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -26,6 +31,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   interactionPlugin,
   timeGridPlugin
 ]);
+>>>>>>> 02078415347b642c41d5919c53fd69c4b3564521
 
 @NgModule({
   declarations: [
@@ -40,7 +46,12 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CalendarioComponent,
     SiNoPipe,
     ReunionTablaComponent,
+<<<<<<< HEAD
+    UsuarioFormComponent,
+    EstadisticasComponent
+=======
     ResumenComponent
+>>>>>>> 02078415347b642c41d5919c53fd69c4b3564521
   ],
   imports: [
     BrowserModule,
@@ -48,7 +59,12 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+<<<<<<< HEAD
+    
+   
+=======
     FullCalendarModule
+>>>>>>> 02078415347b642c41d5919c53fd69c4b3564521
   ],
   providers: [
     UsuarioService
