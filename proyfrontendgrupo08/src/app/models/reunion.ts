@@ -4,6 +4,7 @@ import { Recurso } from "./recurso"
 
 export class Reunion {
     _id!:string;
+    titulo!:string;
     fecha!:Date;
     horaInicio!:string;
     horaFin!:string;

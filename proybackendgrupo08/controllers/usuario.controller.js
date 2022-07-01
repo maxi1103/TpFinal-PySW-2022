@@ -31,7 +31,7 @@ const usuarioCtrl = {}
                         password: req.body.password
                         }
         //el método findOne retorna un objeto que cumpla con los criterios de busqueda
-        Usuario.findOne(criteria, function(err, user) {
+        Usuario.findOne(criteria, function(err, user){
         //el método findOne retorna un objeto que cumpla con los criterios de busqueda
         if (err) {
             res.json({
@@ -48,10 +48,12 @@ const usuarioCtrl = {}
                     msg: "success",
                     username: user.username, 
                     perfil: user.perfil,   
-                    userid: user._id  }) 
+                    userid: user._id,
+                    empleado:user.empleado
+                  }) 
                    
                  } 
-        });
+        }).populate('empleado');
     }
 //exportacion del modulo controlador
 module.exports= usuarioCtrl;
