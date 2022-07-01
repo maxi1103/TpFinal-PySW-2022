@@ -47,10 +47,10 @@ export class EmpleadoComponent implements OnInit {
     this.empleados = new Array<Empleado>();
     this.empleadoService.getEmpleados().subscribe(
       result => {
-       var unEmpleado = new Empleado();
         result.forEach((element: any) => {
-          Object.assign(unEmpleado, element);
-          this.empleados.push(unEmpleado);
+          this.empleado = new Empleado();
+          Object.assign(this.empleado, element);
+          this.empleados.push(this.empleado);
         })
         console.log(this.empleados);
       }, 

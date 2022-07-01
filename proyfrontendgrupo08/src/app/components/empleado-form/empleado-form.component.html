@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-12 col-md-6">
         <h1>Formulario de Empleado</h1>
-        <form action="" class="border border-dark p-3" #empleadoForm="ngForm">
+        <form action="" class="border border-dark p-3" >
             <div class="form-group">
                 <label for="legajo" class="mt-3">Legajo:</label>
                 <input type="number" class="form-control" [(ngModel)]="empleado.Legajo" name="legajo" id="legajo"
@@ -34,7 +34,7 @@
                     <div *ngIf="email.errors?.['required']">Campo Obligatorio!</div>
                 </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="dependencia" class="mt-3">Dependencia</label>
                 <div class="form-check">
                     <input class="form-check-input" type="empleado" id="empleado" required>
@@ -46,9 +46,9 @@
 
                     </select>
                 </div>
-            </div>
+            </div> -->
             <button *ngIf="accion=='new'" type="submit" class="btn btn-primary mt-4 mb-3" (click)="altaEmpleado()"
-                [disabled]="empleadoForm.invalid">Guardar</button>
+                >Guardar</button>
             <button *ngIf="accion=='update'" type="button" class="btn btn-primary  mt-4 mb-3"
                 (click)="actualizarEmpleado()">Actualizar</button>
             <button type="button" class="btn btn-primary  mt-4 mb-3" (click)="cerrar()">Cerrar</button>

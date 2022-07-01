@@ -4,7 +4,7 @@
 
 <div class="row mb-2">
     <div class="col-12">
-        <button class="btn btn-primary" (click)="agregarEmpleado()">AGREGAR</button>
+       
     </div>
 </div>
 
@@ -33,7 +33,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let item of empleados">
-        <td>${{item.Legajo}}</td>
+        <td>{{item.Legajo}}</td>
         <td>{{item.Apellido}}</td>
         <td>{{item.Nombre}}</td>
         <td>{{item.Email}}</td>

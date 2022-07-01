@@ -16,7 +16,7 @@ export class EmpleadoService {
   createEmpleado(empleado:Empleado):Observable<any>{
     const httpOptions={
       headers: new  HttpHeaders({
-   "Content-Type": "application/json"
+          "Content-Type": "application/json"
       }),
       params:new HttpParams({
       })

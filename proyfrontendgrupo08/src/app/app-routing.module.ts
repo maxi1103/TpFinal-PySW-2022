@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path:'formUsuario', component:UsuarioFormComponent}, 
   {path:'home',component:HomeComponent},
-  {path:'formEmpleado',component:EmpleadoFormComponent},
+  {path:'formEmpleado/:id',component:EmpleadoFormComponent},
   {path:'formReunion',component:ReunionFormComponent},
   {path:'empleado',component:EmpleadoComponent},
   {path:'calendario', component:CalendarioComponent},

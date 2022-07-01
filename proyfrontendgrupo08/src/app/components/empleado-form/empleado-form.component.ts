@@ -27,7 +27,6 @@ export class EmpleadoFormComponent implements OnInit {
       private activatedRoute: ActivatedRoute,
       private dependenciaService: DependenciaService,
       private empleadoService:EmpleadoService) {
-      this.empleado = new Empleado();  
 
     if(!this.usuarioService.userLoggedIn()){
       Swal.fire({
@@ -50,16 +49,20 @@ export class EmpleadoFormComponent implements OnInit {
   }
 
   altaEmpleado(){
+    console.log(this.empleado);
+    
     this.empleadoService.createEmpleado(this.empleado).subscribe(
       result => {
+          console.log("1"+this.empleado);
         if (result.status == "1") {
-          alert(result.msg);
+          
           this.router.navigate(['empleado'])
         }
       },
       error => {
+          console.log("0"+this.empleado);
         if (error.status == "0") {
-          alert(error.msg);
+         
         }
       })
   }
@@ -69,7 +72,7 @@ export class EmpleadoFormComponent implements OnInit {
       if (params.id== "0") {
         this.accion = "new"; 
         this.iniciarEmpleado();
-        this.cargarDependencias();
+        //this.cargarDependencias();
 
       } else {
         this.accion = "update";
