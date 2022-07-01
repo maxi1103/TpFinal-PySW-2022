@@ -14,6 +14,9 @@ import { HeaderComponent } from './components/layout/header/header.component';
 import { SiNoPipe } from './pipes/si-no.pipe';
 import { ReunionTablaComponent } from './components/reunion-tabla/reunion-tabla.component';
 import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
+import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
+
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { UsuarioFormComponent } from './components/usuario-form/usuario-form.com
     ReunionFormComponent,
     SiNoPipe,
     ReunionTablaComponent,
-    UsuarioFormComponent
+    UsuarioFormComponent,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,7 @@ import { UsuarioFormComponent } from './components/usuario-form/usuario-form.com
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    
    
   ],
   providers: [
