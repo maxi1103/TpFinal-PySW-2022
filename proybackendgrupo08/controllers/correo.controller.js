@@ -15,7 +15,7 @@ const enviarCorreo = (req=request,resp=response)=>{
     });
 
     const opciones = {
-        from:'Empresarios 👻',
+        from: '"Gestor De Eventos🥵" <42017525@fi.unju.edu.ar>',
         subject:body.asunto,
         to:body.email,
         text:body.mensaje

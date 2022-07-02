@@ -81,6 +81,7 @@ export class ReunionFormComponent implements OnInit {
     this.reunionService.addReunion(this.reunion).subscribe(
       result=>{
         console.log(result);
+
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -88,6 +89,20 @@ export class ReunionFormComponent implements OnInit {
           showConfirmButton: false,
           timer: 1800
         });
+        let asunto="Reunion Empresaurios";
+        let mensaje="Hola a Todos/as, se le informa por medio de este mail que el dia "+this.reunion.fecha+" hay una reunion de '"+this.reunion.titulo+"' en el horario de "+this.reunion.horaInicio+" a "+this.reunion.horaFin+". Gracias por su atencion Empresaurios.";
+        for(let i=0;i<this.reunion.participantes.length;i++){
+          console.log(this.reunion.participantes[i].Email);
+          this.reunionService.enviarCorreo(asunto,this.reunion.participantes[i].Email,mensaje).subscribe(
+            result=>{
+              console.log(result);
+            },
+            error=>{
+              console.log(error);
+            }
+          )
+        }
+
         this.router.navigate(['tablaReunion']);
       },
       error=>{
