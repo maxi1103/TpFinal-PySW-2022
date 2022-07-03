@@ -1,6 +1,6 @@
 const Usuario = require ('../models/usuario')
 const usuarioCtrl = {}
-
+const jwt = require('jsonwebtoken');
 
     usuarioCtrl.getUsuarios = async (req, res) => {
         var usuarios = await Usuario.find().populate('empleado');
@@ -43,13 +43,16 @@ const usuarioCtrl = {}
             status: 0,
             msg: "not found" })
             } else {
+                //preparo un token para ser enviado en caso de loguin correcto
+                const unToken = jwt.sign({id: user._id}, "secretkey");
                     res.json({
                     status: 1,
                     msg: "success",
                     username: user.username, 
                     perfil: user.perfil,   
                     userid: user._id,
-                    empleado:user.empleado
+                    empleado:user.empleado,
+                    token: unToken
                   }) 
                    
                  } 

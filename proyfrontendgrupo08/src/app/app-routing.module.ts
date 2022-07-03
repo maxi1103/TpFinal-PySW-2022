@@ -11,6 +11,7 @@ import { UsuarioFormComponent } from './components/usuario-form/usuario-form.com
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { ResumenComponent } from './components/resumen/resumen.component';
+import { AgendaComponent } from './components/agenda/agenda.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:'tablaReunion',component:ReunionTablaComponent},
   {path:'estadisticas', component: EstadisticasComponent},
   {path:'resumen/:id',component:ResumenComponent},
+  {path:'agenda',component:AgendaComponent},
   {path:'**',pathMatch:'full',redirectTo:'home'}
 ];
 

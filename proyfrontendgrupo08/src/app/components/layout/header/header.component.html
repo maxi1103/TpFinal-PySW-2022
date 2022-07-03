@@ -32,11 +32,14 @@
           </div>
           <div *ngIf="loginService.userLoggedIn()">
             <li><a href="calendario" class="nav-link px-2 text-white">Calendario</a></li>
+          </div>
+          <div *ngIf="loginService.userLoggedIn()&&loginService.userPerfil()!='Administrador'">
+            <li><a href="agenda" class="nav-link px-2 text-white">Agenda</a></li>
           </div>  
         </ul>
         <div *ngIf="!loginService.userLoggedIn()">
           <button class="p-1 me-2  btn btn-outline-light" [routerLink]="['login']" routerLinkActive="ruta-activa">Iniciar Sesion</button>
-          <button class="p-1 btn btn-warning" (click)="usuarioForm()">Registrarse</button>
+          <!-- <button class="p-1 btn btn-warning" (click)="usuarioForm()">Registrarse</button> -->
         </div>
 
         <div class="dropdown text-end" *ngIf="loginService.userLoggedIn()">

@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Calendar, CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
 import esLocale from '@fullcalendar/core/locales/es';
 import { Empleado } from 'src/app/models/empleado';
 import { Reunion } from 'src/app/models/reunion';
 import { ReunionService } from 'src/app/service/reunion.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
 
 @Component({
   selector: 'app-calendario',
@@ -20,18 +23,25 @@ export class CalendarioComponent implements OnInit {
   inicio!:string;
   events:any=[];
 
-  constructor(private reunionService:ReunionService, private usuarioService:UsuarioService) { 
+  constructor(private reunionService:ReunionService, private usuarioService:UsuarioService,private router:Router) {
+    if(usuarioService.userLoggedIn()==false){
+      Swal.fire({
+        icon: 'error',
+        title: 'Acceso denegado',
+        text: 'Por favor inicia sesion.',
+      })
+      router.navigate(['login']);
+    } 
     this.getReuniones();
   }
 
   getReuniones(){
     this.reunionService.gerReuniones().subscribe(
-      result=>{
-        for(let i=0;i<result.length;i++){
-          this.events[i]={title:result[i].titulo, date:result[i].fecha, start:result[i].fecha+'T'+result[i].horaInicio, end:result[i].fecha+'T'+result[i].horaFin};
-        }
-        /* if(this.usuarioService.userPerfil()=="Administrador"){
-          
+      result=>{ 
+        if(this.usuarioService.userPerfil()=="Administrador"){
+          for(let i=0;i<result.length;i++){
+            this.events[i]={title:result[i].titulo, date:result[i].fecha, start:result[i].fecha+'T'+result[i].horaInicio, end:result[i].fecha+'T'+result[i].horaFin};
+          }
         }else{
           var i=0;
           result.forEach((element:Reunion)=>{
@@ -39,14 +49,11 @@ export class CalendarioComponent implements OnInit {
             element.participantes.forEach((element2:Empleado)=>{
               if(element2._id==this.usuarioService.getIdEmp()){
                 this.events[i]={title:result[i].titulo, date:result[i].fecha, start:result[i].fecha+'T'+result[i].horaInicio, end:result[i].fecha+'T'+result[i].horaFin};
-                //console.log(this.events[i]);
+                i++;
               }
-              
             })
-            i++;
           })
-          
-        } */
+        }
         //Configuracion del calendario
         console.log(this.events);
         this.calendarOptions = {

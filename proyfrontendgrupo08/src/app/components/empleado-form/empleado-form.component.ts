@@ -19,7 +19,6 @@ export class EmpleadoFormComponent implements OnInit {
 
   listaDependencias: Array<Dependencia>=new Array<Dependencia>();
   empleado!:Empleado;
-  save:boolean=false;
   accion = "";
 
   constructor(private usuarioService:UsuarioService,
@@ -27,25 +26,14 @@ export class EmpleadoFormComponent implements OnInit {
       private activatedRoute: ActivatedRoute,
       private dependenciaService: DependenciaService,
       private empleadoService:EmpleadoService) {
-
-    if(!this.usuarioService.userLoggedIn()){
-      Swal.fire({
-        icon: 'error',
-        title: 'Acceso denegado',
-        text: 'Necesita iniciar sesion!'
-      })
-      this.router.navigate(['login']); 
-    }else{
-      if(this.usuarioService.userPerfil()!="Administrador"){
-        Swal.fire({
-          icon: 'error',
-          title: 'Acceso Prohibido...',
-          text: 'No tiene los permisos necesarios!'
-        })
-
-        this.router.navigate(['home']);
-      }
-    }
+        if(usuarioService.userLoggedIn()==false){
+          Swal.fire({
+            icon: 'error',
+            title: 'Acceso denegado',
+            text: 'Por favor inicia sesion.',
+          })
+          router.navigate(['login']);
+        } 
   }
 
   altaEmpleado(){
@@ -53,16 +41,28 @@ export class EmpleadoFormComponent implements OnInit {
     
     this.empleadoService.createEmpleado(this.empleado).subscribe(
       result => {
-          console.log("1"+this.empleado);
+        console.log("1"+this.empleado);
         if (result.status == "1") {
-          
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Empleado creado correctamente!',
+            showConfirmButton: false,
+            timer: 1500
+          });
           this.router.navigate(['empleado'])
         }
       },
       error => {
-          console.log("0"+this.empleado);
+        console.log("0"+this.empleado);
         if (error.status == "0") {
-         
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Error al crear empleado',
+            showConfirmButton: false,
+            timer: 1500
+          });
         }
       })
   }

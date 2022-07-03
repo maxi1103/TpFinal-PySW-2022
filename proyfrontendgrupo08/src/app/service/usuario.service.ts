@@ -31,6 +31,7 @@ export class UsuarioService {
     sessionStorage.removeItem("perfil");
     sessionStorage.removeItem("userid");
     sessionStorage.removeItem("idEmp");
+    sessionStorage.removeItem("token");
   } 
 
   public getIdEmp(){
@@ -61,6 +62,15 @@ export class UsuarioService {
     var perfil = sessionStorage.getItem("perfil");
     return perfil;
   }
+
+  public getToken():string{
+    if (sessionStorage.getItem("token")!= null){
+      return sessionStorage.getItem("token")!;
+    }else{
+      return "";
+    }
+  }
+
    
   /**
    * Peticion GET para solicitar todos los empleados
