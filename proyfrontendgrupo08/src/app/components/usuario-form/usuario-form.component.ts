@@ -22,12 +22,12 @@ export class UsuarioFormComponent implements OnInit {
     this.usuario=new Usuario();
     this.getEmpleados();
     this.usuarios= new Array<Usuario>();
+    this.getUsuarios();
   }
 
   altaUsuario(){
-    console.log(this.usuario.empleado);
 
-    if(this.comprobarCuenta()){
+    if(this.comprobarCuenta()==true){
       Swal.fire({
         position: 'center',
             icon: 'error',
@@ -94,23 +94,21 @@ export class UsuarioFormComponent implements OnInit {
           Object.assign(this.usuario,element);
           this.usuarios.push(this.usuario);
         })
+        this.usuario = new Usuario();
       },
       error=>{
         console.log(error);
       }
     )
+    
   }
 
   comprobarCuenta():boolean{
     var bool=false;
-    
-      this.empleados.forEach((elementt:Empleado)=>{
-        
-        if(this.usuario.empleado._id==elementt._id){
+      this.usuarios.forEach((elementt:Usuario)=>{
+        if(this.usuario.empleado._id==elementt.empleado._id){
           bool=true;
         }
-        //console.log("existente:"+this.usuario.empleado._id);
-        //console.log("todos:"+elementt._id);
       });
       return bool;
   }

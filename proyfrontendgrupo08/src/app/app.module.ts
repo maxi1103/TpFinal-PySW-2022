@@ -59,7 +59,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     HttpClientModule,
     AppRoutingModule,
     FullCalendarModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
     NgxQRCodeModule
   ],
   providers: [
