@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <app-header></app-header>
-    <div class="container-xl">
+    <div class="container-fluid m-3">
         <div class="row justify-content-center">
             <div class="col-12 col-md-12">
                 <h3>Graficos Por: </h3>
@@ -15,28 +15,19 @@
                 <label for="dateEnd">Hasta</label>
                 <input type="date" id="dateEnd" name="dateEnd" [(ngModel)]="dateEnd">
             </div>
-
         </div>
-        <div class="row">
-            <div class="col-12 col-md-10">
+        <div class="row mt-4">
+            <div class="col-12 col-md-6 me-4">
                 <h3>Grafico de Barra</h3>
                 <div style="height:500px;width:100%">
                     <canvas id="chartBar"></canvas>
                 </div>
             </div>
-            <div class="col-12 col-md-2">
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-10">
+            <div class="col-12 col-md-5">
                 <h3>Grafico de Torta</h3>
                 <div style="height:500px;width:100%">
                     <canvas id="chartPie"></canvas>
                 </div>
-            </div>
-            <div class="col-12 col-md-2">
-
             </div>
         </div>
     </div>

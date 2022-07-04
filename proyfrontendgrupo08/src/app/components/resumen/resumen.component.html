@@ -8,7 +8,9 @@
       </div>
       <div id="htmlData" >
 
-        <h2>Resumen Reunion</h2>
+        <div class="row">
+          <h2 class="col-12 m-3 text-center">Resumen Reuniones</h2>
+        </div>
         
         <br>
         <h6>Participantes:  
@@ -19,8 +21,8 @@
         <li *ngFor="let recu of reunion.recursos">Recurso:{{recu.recurso}} - TipoRecurso: {{recu.tipoRecurso}}
         </li> 
         </h6>
-        <table class="table table caption-top table-bordered  table-responsive mt-4">
-          <thead class="table-danger">
+        <table class="table table-hover caption-top table-bordered  table-responsive mt-4">
+          <thead class="table-success">
             <tr>
               <th scope="col">Fecha</th>
               <th scope="col">Hora Inicio</th>
@@ -43,9 +45,9 @@
              
             </tr> 
           </tbody>
-          </table>
+        </table>
         <div *ngIf="loginService.userLoggedIn()==true">
-          <ngx-qrcode 
+          <ngx-qrcode
             [elementType]="elementType" 
             [value]="value"
             cssClass="aclass">
@@ -58,7 +60,7 @@
   
   
   <div *ngIf="loginService.userLoggedIn()==true">
-    <button class="btn col col-lg-4 btn-danger btn-block ml-4" (click)="downloadPDF()">Download PDF</button>
+    <button class="btn col col-lg-4 btn-danger btn-block ml-4 mb-5" (click)="downloadPDF()">Download PDF</button>
   </div>
 </div>
 
