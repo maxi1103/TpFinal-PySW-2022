@@ -12,6 +12,6 @@ router.put('/:id/recurso/:idrecurso', reunionCtrl.addRecurso);
 router.delete('/:id/recurso/:idrecurso',reunionCtrl.deleteRecurso);
 router.put('/:id/participante/:idparticipante',reunionCtrl.addParticipante);
 router.delete('/:id/participante/:idparticipante',reunionCtrl.deleteParticipante);
-
+/* router.get('/filtro/:p1/:p2/:p3',reunionCtrl.getReunionesFiltro); */
 //exportamos el modulo de rutas
 module.exports = router;

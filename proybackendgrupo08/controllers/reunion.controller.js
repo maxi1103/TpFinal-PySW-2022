@@ -30,6 +30,12 @@ reunionCtrl.getReunion = async(req,res)=>{
     const reunion= await Reunion.findById(req.params.id).populate('recursos').populate('oficina').populate('participantes');
     res.json(reunion);
 }
+
+/* reunionCtrl.getReunionesFiltro = async(req,res)=>{
+    var reuniones = await Reunion.find({fecha:req.params.p1,participantes:req.params.p2,oficina:req.params.p3});
+    res.json(reuniones);
+} */
+
 reunionCtrl.editReunion = async (req, res) => {
     const reunion = new Reunion(req.body);
     try {

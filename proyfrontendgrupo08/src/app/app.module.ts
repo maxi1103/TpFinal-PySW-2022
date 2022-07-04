@@ -24,6 +24,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { ResumenComponent } from './components/resumen/resumen.component';
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { AgendaComponent } from './components/agenda/agenda.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -57,7 +58,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    FullCalendarModule
+    FullCalendarModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     UsuarioService,

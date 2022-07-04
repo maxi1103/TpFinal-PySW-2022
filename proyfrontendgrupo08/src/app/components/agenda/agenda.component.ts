@@ -59,6 +59,17 @@ export class AgendaComponent implements OnInit {
     });
   }
 
+  verQr(){
+    Swal.fire({
+      title: 'QR!',
+      text: 'Codigo QR de la reunion!',
+      imageUrl: 'https://unsplash.it/400/200',
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: 'Custom image',
+    })
+  }
+
   ngOnInit(): void {
   }
 

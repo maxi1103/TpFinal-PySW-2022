@@ -39,6 +39,14 @@ export class ReunionService {
     return this._http.get(this.hostBase, httpOption);
    }
 
+   public getReunionesFiltro(p1:string,p2:string,p3:string):Observable<any>{
+    const httpOption = {
+      headers: new HttpHeaders({
+      })
+    }
+    return this._http.get(this.hostBase+"/filtro/"+p1+"/"+p2+"/"+p3, httpOption);
+   }
+
    public deleteReunion(_id:string):Observable<any>{
     const httpOptions ={
       header: new HttpHeaders({

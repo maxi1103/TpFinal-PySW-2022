@@ -15,6 +15,12 @@ export class ReunionTablaComponent implements OnInit {
 
   reuniones:Array<Reunion>=[];
   reunion:Reunion;
+  searchText: any;
+  p1!:Date;
+  p2!:string;
+  p3!:string;
+  select!:string;
+
   constructor(private reunionService:ReunionService,private route:Router,private usuarioService:UsuarioService) {
     if(usuarioService.userLoggedIn()==false){
       Swal.fire({
@@ -47,6 +53,29 @@ export class ReunionTablaComponent implements OnInit {
       }
     )
   }
+
+  getReunionesFiltro(){
+    this.reuniones=new Array<Reunion>();
+    this.reunionService.gerReuniones().subscribe(
+      result=>{
+        result.forEach((element:any)=>{
+          console.log(element)
+          this.reunion= new Reunion();
+          Object.assign(this.reunion,element);
+          if(this.reunion.fecha==this.p1){ /* &&element.participantes.Nombre==this.p2&&element.oficina.numero==this.p3 */
+            console.log("entre ");
+            
+            this.reuniones.push(this.reunion);
+          }
+        });
+        console.log(this.reuniones)
+      },
+      error=>{
+        
+      }
+    )
+  }
+
   eliminarReunion(_id:string){
     Swal.fire({
       title: 'Estas seguro/a?',

@@ -4,24 +4,54 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-12">
         <div>
-          <h3>Reuniones</h3>
+          <div class="row mb-5">
+            <label class="form-label" for="select">Selecciona una opcion!</label>
+            <select class="w-25 form-select-sm" name="select" id="select" [(ngModel)]="select">
+              <option value="1">Busqueda</option>
+              <option value="2">Busqueda con filtros</option>
+            </select>
+          </div>
+          <div class="row" *ngIf="select=='1'">
+            <div class="col-3">
+              <h3 class="text-end">Busqueda:</h3>
+            </div>
+            <div class="col-9">
+              <div class="search-name w-50">
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on"
+                  placeholder="Buscar">
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="select=='2'">
+            <div class="col-2"><h5 class="">Varios Parametros:</h5></div>
+            <div class="col-1"><label class="form-label">Fecha</label></div>
+            <div class="col-2"><input type="date" class="form-control" ([ngModel])="p1"></div>
+            <div class="col-1"><label class="form-label">Participante</label></div>
+            <div class="col-2"><input type="text" class="form-control" ([ngModel])="p2"></div>
+            <div class="col-1"><label class="form-label">Oficina</label></div>
+            <div class="col-2"><input type="text" class="form-control" ([ngModel])="p3"></div>
+            <div class="col1"><button type="button" class="btn btn-outline-info" (click)="getReunionesFiltro()">Buscar</button></div>
+          </div>
+          <h3 class="mt-3">Reuniones</h3>
           <table>
             <table class="table table-responsive table-bordered">
               <thead class="table-dark">
                 <tr>
-                  <th scope="col">Fecha Establecida</th>
+                  <th scope="col">Titulo</th>
+                  <th scope="col">Fecha</th>
                   <th scope="col">Hora de Inicio</th>
                   <th scope="col">Hora de Fin</th>
                   <th scope="col">Oficina Nro</th>
-                  <th scope="col">Tipo de Reunion</th>
-                  <th scope="col">Estado de la Reunion</th>
+                  <th scope="col">Prioridad</th>
+                  <th scope="col">Estado</th>
                   <th scope="col">Recursos</th>
                   <th scope="col">Participantes</th>
                   <th scope="col">Acciones</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let reu of reuniones">
+                <tr *ngFor="let reu of reuniones | filter:searchText">
+                  <td>{{reu.titulo}}</td>
                   <td>{{reu.fecha }}</td>
                   <td>{{reu.horaInicio}}</td>
                   <td>{{reu.horaFin}}</td>

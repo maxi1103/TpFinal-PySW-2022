@@ -40,7 +40,7 @@ export class CalendarioComponent implements OnInit {
       result=>{ 
         if(this.usuarioService.userPerfil()=="Administrador"){
           for(let i=0;i<result.length;i++){
-            this.events[i]={title:result[i].titulo, date:result[i].fecha, start:result[i].fecha+'T'+result[i].horaInicio, end:result[i].fecha+'T'+result[i].horaFin};
+            this.events[i]={title:result[i].titulo+"- Oficina "+result[i].oficina.numero, date:result[i].fecha, start:result[i].fecha+'T'+result[i].horaInicio, end:result[i].fecha+'T'+result[i].horaFin};
           }
         }else{
           var i=0;
