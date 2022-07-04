@@ -70,4 +70,20 @@ export class ReunionService {
     };
     return this._http.get(this.hostBase+_id,httpOptions);
   }
+
+  public enviarCorreo(asunto:string,email:string,mensaje:string):Observable<any>{
+    const httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+        }),
+    };
+    const body = new HttpParams()
+    .set('asunto', asunto)
+    .set('email', email)
+    .set('mensaje', mensaje);
+
+    return this._http.post("http://localhost:3000/api/correo",body,httpOption);
+   }
+    
 }
+

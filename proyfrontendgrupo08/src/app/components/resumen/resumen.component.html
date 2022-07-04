@@ -1,7 +1,9 @@
-<div class="container">
+<div class="container-fluid">
+  <app-header *ngIf="loginService.userLoggedIn()"></app-header>
+  <div class="container-xl">
     <div class="row">
       <div *ngIf="loginService.userLoggedIn()==false"> 
-        <h1> Reunion Validada con Exito</h1>
+        <h1 class="text-center"> Reunion Validada con Exito</h1>
        
       </div>
       <div id="htmlData" >
@@ -42,18 +44,25 @@
             </tr> 
           </tbody>
           </table>
-        
+        <div *ngIf="loginService.userLoggedIn()==true">
           <ngx-qrcode 
             [elementType]="elementType" 
             [value]="value"
             cssClass="aclass">
           </ngx-qrcode>
+        </div>
       
-      </div>
     </div>
-  </div>
+  
+
   
   
   <div *ngIf="loginService.userLoggedIn()==true">
     <button class="btn col col-lg-4 btn-danger btn-block ml-4" (click)="downloadPDF()">Download PDF</button>
   </div>
+</div>
+
+  </div>
+  <app-footer *ngIf="loginService.userLoggedIn()"></app-footer>
+</div>
+

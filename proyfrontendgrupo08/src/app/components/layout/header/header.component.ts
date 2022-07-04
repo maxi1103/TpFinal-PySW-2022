@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     this.loginService.logout();
+    this.router.navigate(['login']);
   }
 
   ngOnInit(): void {
@@ -71,5 +72,8 @@ export class HeaderComponent implements OnInit {
         console.log(error);
       }
     )
+    }
+  login(){
+    this.router.navigate(['login']);
   }
 }

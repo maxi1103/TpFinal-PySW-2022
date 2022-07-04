@@ -20,7 +20,6 @@ export class EmpleadoFormComponent implements OnInit {
   dependenciasAgregar:Array<Dependencia>= new Array<Dependencia>();
   dependencia:Dependencia;
   empleado!:Empleado;
-  save:boolean=false;
   accion = "";
 
   constructor(private usuarioService:UsuarioService,
@@ -28,7 +27,9 @@ export class EmpleadoFormComponent implements OnInit {
       private activatedRoute: ActivatedRoute,
       private dependenciaService: DependenciaService,
       private empleadoService:EmpleadoService) {
-        this.dependencia= new Dependencia();
+
+  
+    this.dependencia= new Dependencia();
 
     if(!this.usuarioService.userLoggedIn()){
       Swal.fire({
@@ -55,16 +56,28 @@ export class EmpleadoFormComponent implements OnInit {
     
     this.empleadoService.createEmpleado(this.empleado).subscribe(
       result => {
-          console.log("1"+this.empleado);
+        console.log("1"+this.empleado);
         if (result.status == "1") {
-          
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Empleado creado correctamente!',
+            showConfirmButton: false,
+            timer: 1500
+          });
           this.router.navigate(['empleado'])
         }
       },
       error => {
-          console.log("0"+this.empleado);
+        console.log("0"+this.empleado);
         if (error.status == "0") {
-         
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Error al crear empleado',
+            showConfirmButton: false,
+            timer: 1500
+          });
         }
       })
   }

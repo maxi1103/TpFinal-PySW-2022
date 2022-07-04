@@ -5,11 +5,13 @@ import { Notificacion } from 'src/app/models/notificacion';
 import { Oficina } from 'src/app/models/oficina';
 import { Recurso } from 'src/app/models/recurso';
 import { Reunion } from 'src/app/models/reunion';
+import { Usuario } from 'src/app/models/usuario';
 import { EmpleadoService } from 'src/app/service/empleado.service';
 import { NotificacionService } from 'src/app/service/notificacion.service';
 import { OficinaService } from 'src/app/service/oficina.service';
 import { RecursoService } from 'src/app/service/recurso.service';
 import { ReunionService } from 'src/app/service/reunion.service';
+import { UsuarioService } from 'src/app/service/usuario.service';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 
@@ -33,8 +35,15 @@ export class ReunionFormComponent implements OnInit {
  accion="";
 
   constructor(private oficinaService:OficinaService, private empleadoService:EmpleadoService,
-              private recursoService:RecursoService,private reunionService:ReunionService,private activatedRoute:ActivatedRoute,private router:Router
-              ,private notificacionService:NotificacionService ) { 
+              private recursoService:RecursoService,private reunionService:ReunionService,private activatedRoute:ActivatedRoute,private router:Router,private usuarioService:UsuarioService,private notificacionService:NotificacionService) {
+                if(usuarioService.userLoggedIn()==false){
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Acceso denegado',
+                    text: 'Por favor inicia sesion.',
+                  })
+                  router.navigate(['login']);
+                }             
     this.participantesAgregar= new Array<Empleado>();
     this.participantes= new Array<Empleado>();
     this.reunion= new Reunion();
@@ -84,6 +93,7 @@ export class ReunionFormComponent implements OnInit {
     this.reunionService.addReunion(this.reunion).subscribe(
       result=>{
         console.log(result);
+
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -98,7 +108,6 @@ export class ReunionFormComponent implements OnInit {
           notificacion.empleado=element;
           this.reunion._id=result._id;
           notificacion.reunion= this.reunion;
-          console.log(result._id);
           this.notificacionService.createNotificacion(notificacion).subscribe(
             result=>{
               console.log(result);
@@ -109,6 +118,22 @@ export class ReunionFormComponent implements OnInit {
           );
         });
 
+        /*let asunto="Reunion Empresaurios";
+        let mensaje="Hola a Todos/as, se le informa por medio de este mail que el dia "+this.reunion.fecha+" hay una reunion de '"+this.reunion.titulo+"' en el horario de "+this.reunion.horaInicio+" a "+this.reunion.horaFin+". Gracias por su atencion Empresaurios.";
+        for(let i=0;i<this.reunion.participantes.length;i++){
+          this.reunionService.enviarCorreo(asunto,this.reunion.participantes[i].Email,mensaje).subscribe(
+            result=>{
+              console.log(result);
+            },
+            error=>{
+              console.log(error);
+            }
+          );
+        };*/
+
+        
+
+          
         
         this.router.navigate(['tablaReunion']);
       },
@@ -204,14 +229,38 @@ export class ReunionFormComponent implements OnInit {
   }
   //Cargar los Participantes al formulario
   async getParticipantes(){
+    var usuarios:Array<Usuario>;
+    var usuario:Usuario;
+    this.usuarioService.getUsuarios().subscribe(
+      result=>{
+        usuarios= new Array<Usuario>();
+        result.forEach((element:Usuario)=>{
+          usuario=new Usuario();
+          Object.assign(usuario,element);
+          usuarios.push(usuario);
+        })
+      },
+      error=>{
+        console.log(error);
+      }
+    )
     this.empleadoService.getEmpleados().subscribe(
       result=>{
-        result.forEach((element:any)=>{
-          this.participante= new Empleado();
-          Object.assign(this.participante,element);
-          this.participantes.push(this.participante);
-          this.participante= new Empleado();
-          
+        result.forEach((element:Empleado)=>{
+          var b=false;
+          usuarios.forEach((elementt:Usuario)=>{
+            if(elementt.empleado._id==element._id && elementt.username== "admin"){
+              b=true;
+            }
+          })
+          if(b==false){
+            this.participante= new Empleado();
+            Object.assign(this.participante,element);
+            this.participantes.push(this.participante);
+             this.participante= new Empleado();
+             b=false;
+          }
+           
         });
       },
       error=>{
@@ -253,7 +302,6 @@ export class ReunionFormComponent implements OnInit {
       }
     )
   }
-  
  
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{

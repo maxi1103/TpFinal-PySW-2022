@@ -6,6 +6,7 @@ const Dependencia = require('./models/dependencia');
 const Oficina= require('./models/oficina');
 const Empleado = require('./models/empleado');
 const Usuario = require('./models/usuario');
+const Recurso= require('./models/recurso');
 
 const bodyparser = require('body-parser');
 
@@ -33,63 +34,110 @@ app.listen(app.get('port'), () => {
 console.log(`Server started on port`, app.get('port'));
 
 //cargando archivos necsarios
-var dependencias = Dependencia.find();
-if(dependencias==null){
-   const dependencia1= new Dependencia({
-    nombre: 'Contable'
-   });
-   dependencia1.save();
-   const dependencia2= new Dependencia({
-    nombre: 'Personal'
-   });
-   dependencia2.save();
-   const dependencia3= new Dependencia({
-    nombre: 'Auditoria'
-   });
-   dependencia3.save();
-}
 
-var oficinas= Oficina.find();
-if(oficinas==null){
-    const oficina1= new Oficina({
-        numero: 1,
-        estado: 'disponible',
-        capacidad: 25
-    });
-    oficina1.save();
-    const oficina2= new Oficina({
-        numero: 2,
-        estado: 'disponible',
-        capacidad: 40
-    });
-    oficina2.save();
-    const oficina3= new Oficina({
-        numero: 3,
-        estado: 'disponible',
-        capacidad: 100
-    }); 
-    oficina3.save();
-}
-var empleados =Empleado.find();
-var usuarios= Usuario.find();
+//cargar dependencias
+var query = Dependencia.find();
+query.exec( function (err,dependencias){
+   if(!dependencias.length){
+        const dependencia1= new Dependencia({
+            nombre: 'Contable'
+        });
+        dependencia1.save();
+        const dependencia2= new Dependencia({
+            nombre: 'Personal'
+           });
+        dependencia2.save();
+            const dependencia3= new Dependencia({
+            nombre: 'Auditoria'
+           });
+        dependencia3.save();
+        
+    }
+});
 
-if(empleados==null && usuarios == null){
-    const empleado= new Empleado({
-        Apellido: 'admin',
-        Legajo: 123,
-        Nombre: 'admin',
-        Email: 'admin@gmail.com'
-    });
-    empleado.save();
 
-    empleados=Empleado.find();
-    const usuario= new Usuario({
-      usurname: 'admin',
-      password: 'admin',
-      perfil: 'Administrador',
-      empleado: empleado._id
-    });
-}
+var query2= Oficina.find();
+query2.exec(function (err,oficinas){
+    if(!oficinas.length){
+        const oficina1= new Oficina({
+            numero: 1,
+            estado: 'disponible',
+            capacidad: 25
+        });
+        oficina1.save();
+        const oficina2= new Oficina({
+            numero: 2,
+            estado: 'disponible',
+            capacidad: 40
+        });
+        oficina2.save();
+        const oficina3= new Oficina({
+            numero: 3,
+            estado: 'disponible',
+            capacidad: 100
+        }); 
+        oficina3.save();
+    }
+});
+var query5=Recurso.find();
+query5.exec(function(err,recursos){
+    if(!recursos.length){
+        const recurso1= new Recurso({
+            tipoRecurso: 'Fisico',
+            recurso: 'Proyector',
+            disponible: true
+        })
+        recurso1.save();
+        const recurso2= new Recurso({
+            tipoRecurso: 'Logico',
+            recurso: 'PDF',
+            disponible: true
+        })
+        recurso2.save();
+        const recurso3= new Recurso({
+            tipoRecurso: 'Fisico',
+            recurso: 'Equipo de Audio',
+            disponible: true
+        })
+        recurso3.save();
+        const recurso4= new Recurso({
+            tipoRecurso: 'Logico',
+            recurso: 'Video',
+            disponible: true
+        })
+        recurso4.save();
+    }
+}) 
+
+
+var query3 =Empleado.find();
+var query4= Usuario.find();
+
+var id;
+query3.exec (function (err,empleados){
+    id=empleados[0]._id;
+    if(!empleados.length){
+        const empleado= new Empleado({
+            Apellido: 'admin',
+            Legajo: 123,
+            Nombre: 'admin',
+            Email: 'admin@gmail.com'
+        });
+        empleado.save();
+    }
+})
+query4.exec(function (err,usuarios){
+    if(!usuarios.length){
+        const usuario= new Usuario({
+            username: 'admin',
+            password: 'admin',
+            perfil: 'Administrador',
+            empleado: id
+          });
+          usuario.save();
+    }
+})
+
 
 
 });

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import Chart from 'chart.js/auto';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { Empleado } from 'src/app/models/empleado';
@@ -7,6 +8,10 @@ import { Reunion } from 'src/app/models/reunion';
 import { EmpleadoService } from 'src/app/service/empleado.service';
 import { OficinaService } from 'src/app/service/oficina.service';
 import { ReunionService } from 'src/app/service/reunion.service';
+import { UsuarioService } from 'src/app/service/usuario.service';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
+
 @Component({
   selector: 'app-estadisticas',
   templateUrl: './estadisticas.component.html',
@@ -25,7 +30,15 @@ export class EstadisticasComponent implements OnInit {
   mostrarLabel:Array<string>=[];
   dateStart:Date;
   dateEnd:Date;
-  constructor(private reunionService:ReunionService,private empleadoService:EmpleadoService,private oficinaService:OficinaService) { 
+  constructor(private reunionService:ReunionService,private empleadoService:EmpleadoService,private oficinaService:OficinaService,private usuarioService:UsuarioService,private router:Router) {
+    if(usuarioService.userLoggedIn()==false){
+      Swal.fire({
+        icon: 'error',
+        title: 'Acceso denegado',
+        text: 'Por favor inicia sesion.',
+      })
+      router.navigate(['login']);
+    }  
     this.mostrar= new Array<number>();
     this.mostrarLabel= new Array<string>();
     this.reuniones= new Array<Reunion>();

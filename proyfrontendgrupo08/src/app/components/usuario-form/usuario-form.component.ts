@@ -17,42 +17,55 @@ export class UsuarioFormComponent implements OnInit {
   empleado!:Empleado;
   empleados!:Array<Empleado>;
   save:boolean=false;
-
+  usuarios:Array<Usuario>=[];
   constructor(private router:Router, private usuarioService:UsuarioService) { 
     this.usuario=new Usuario();
     this.getEmpleados();
+    this.usuarios= new Array<Usuario>();
   }
 
   altaUsuario(){
     console.log(this.usuario.empleado);
-    this.usuarioService.altaUsuario(this.usuario).subscribe(
-      result=>{
-        if(result.status=="1"){
-          this.save=true;
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Usuario creado correctamente!',
-            showConfirmButton: false,
-            timer: 1800
-          });
-          this.router.navigate(['login']);
-        }
-      },
-      error=>{
-        if(error.status=="0"){
-          this.save=false;
-          console.log(error.msg);
-          Swal.fire({
-            position: 'center',
+
+    if(this.comprobarCuenta()){
+      Swal.fire({
+        position: 'center',
             icon: 'error',
-            title: 'Algo salio muy mal!',
+            title: 'El empleado ya posee cuenta!',
             showConfirmButton: false,
             timer: 1800
-          });
+      })
+    }else{
+      this.usuarioService.altaUsuario(this.usuario).subscribe(
+        result=>{
+          if(result.status=="1"){
+            this.save=true;
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Usuario creado correctamente!',
+              showConfirmButton: false,
+              timer: 1800
+            });
+            this.router.navigate(['login']);
+          }
+        },
+        error=>{
+          if(error.status=="0"){
+            this.save=false;
+            console.log(error.msg);
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Algo salio muy mal!',
+              showConfirmButton: false,
+              timer: 1800
+            });
+          }
         }
-      }
-    )
+      )
+    }
+    
   }
 
   getEmpleados(){
@@ -60,16 +73,42 @@ export class UsuarioFormComponent implements OnInit {
       result=>{
         this.empleados=new Array<Empleado>();
         for(let i=0;i<result.length;i++){
+          if(result[i].Nombre!="admin"){
           this.empleado=new Empleado();
           Object.assign(this.empleado,result[i]);
           this.empleados.push(this.empleado);
+          }
         }
-        console.log(this.empleados);
+       
       },
       error=>{
 
       }
     )
+  }
+  getUsuarios(){
+    this.usuarioService.getUsuarios().subscribe(
+      result=>{
+        result.forEach((element:Usuario)=>{
+          this.usuario= new Usuario();
+          Object.assign(this.usuario,element);
+          this.usuarios.push(this.usuario);
+        })
+      },
+      error=>{
+        console.log(error);
+      }
+    )
+  }
+
+  comprobarCuenta():boolean{
+    var bool=false;
+      this.empleados.forEach((elementt:Empleado)=>{
+        if(this.usuario.empleado._id== elementt._id){
+          bool=true;
+        }
+      });
+      return bool;
   }
 
   loginForm(){

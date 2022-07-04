@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Reunion } from 'src/app/models/reunion';
 import { NotificacionService } from 'src/app/service/notificacion.service';
 import { ReunionService } from 'src/app/service/reunion.service';
+import { UsuarioService } from 'src/app/service/usuario.service';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 
@@ -15,7 +16,15 @@ export class ReunionTablaComponent implements OnInit {
 
   reuniones:Array<Reunion>=[];
   reunion:Reunion;
-  constructor(private reunionService:ReunionService,private route:Router,private notificacionService:NotificacionService) { 
+  constructor(private reunionService:ReunionService,private route:Router,private usuarioService:UsuarioService,private notificacionService:NotificacionService) {
+    if(usuarioService.userLoggedIn()==false){
+      Swal.fire({
+        icon: 'error',
+        title: 'Acceso denegado',
+        text: 'Por favor inicia sesion.',
+      })
+      route.navigate(['login']);
+    } 
     this.reuniones= new Array<Reunion>();
     this.reunion= new Reunion();  
     this.getReuniones();

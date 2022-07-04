@@ -6,7 +6,10 @@ import { Empleado } from 'src/app/models/empleado';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas'; // Todavía no lo usamos
 import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels, NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
-import { UsuarioService} from 'src/app/service/usuario.service';
+import { UsuarioService } from 'src/app/service/usuario.service';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
+
 @Component({
   selector: 'app-resumen',
   templateUrl: './resumen.component.html',
@@ -23,10 +26,19 @@ export class ResumenComponent implements OnInit {
   empleados!:Array<Empleado>;
   accion="";
 
-  constructor(private reunionService:ReunionService,private activatedRoute:ActivatedRoute,public loginService:UsuarioService) {
-      this.reunion=new Reunion();
-      this.empleado=new Empleado();
-      this.empleados=new Array<Empleado>();
+  constructor(private reunionService:ReunionService,private activatedRoute:ActivatedRoute,public loginService:UsuarioService,private router:Router) {
+   /*  if(loginService.userLoggedIn()==false){
+      Swal.fire({
+        icon: 'error',
+        title: 'Acceso denegado',
+        text: 'Por favor inicia sesion.',
+      })
+      router.navigate(['login']);
+    }  */
+    this.reunion=new Reunion();
+    this.empleado=new Empleado();
+    this.empleados=new Array<Empleado>();
+
   }
 
   downloadPDF() {
