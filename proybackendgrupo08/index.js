@@ -113,10 +113,23 @@ query5.exec(function(err,recursos){
 var query4= Usuario.find();
 query4.exec(function (err,usuarios){
     if(!usuarios.length){
+        const dependencia1= new Dependencia({
+            nombre: 'Programador'
+        });
+        dependencia1.save();
+        const empleado= new Empleado({
+            Apellido: 'Lima',
+            Legajo: '3023',
+            Nombre: 'Natanael',
+            Email:'natanael@gmail.com',
+            Dependencias:dependencia1
+          });
+          empleado.save();
         const usuario= new Usuario({
             username: 'admin',
             password: 'admin',
-            perfil: 'Administrador'
+            perfil: 'Administrador',
+            empleado:empleado
             
           });
           usuario.save();

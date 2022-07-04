@@ -103,10 +103,14 @@ export class UsuarioFormComponent implements OnInit {
 
   comprobarCuenta():boolean{
     var bool=false;
+    
       this.empleados.forEach((elementt:Empleado)=>{
-        if(this.usuario.empleado._id== elementt._id){
+        
+        if(this.usuario.empleado._id==elementt._id){
           bool=true;
         }
+        //console.log("existente:"+this.usuario.empleado._id);
+        //console.log("todos:"+elementt._id);
       });
       return bool;
   }

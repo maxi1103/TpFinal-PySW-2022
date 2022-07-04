@@ -52,8 +52,7 @@ export class EmpleadoFormComponent implements OnInit {
   }
 
   altaEmpleado(){
-    console.log(this.empleado);
-    
+    this.empleado.Dependencias=this.dependenciasAgregar;
     this.empleadoService.createEmpleado(this.empleado).subscribe(
       result => {
         console.log("1"+this.empleado);
