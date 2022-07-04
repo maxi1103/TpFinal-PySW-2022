@@ -51,7 +51,8 @@ export class HeaderComponent implements OnInit {
     )
   }
   cargarNotificaciones(){
-    if(this.loginService.userLoggedIn()==true){
+    console.log(this.loginService.getIdEmp());
+    if(this.loginService.userLoggedIn()==true && this.loginService.getIdEmp()!=null){
       this.getNotificaciones();
       }
   }
