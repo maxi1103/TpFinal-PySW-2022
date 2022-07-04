@@ -25,6 +25,7 @@ import { ResumenComponent } from './components/resumen/resumen.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { AgendaComponent } from './components/agenda/agenda.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -56,7 +57,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    AppRoutingModule,
     FullCalendarModule,
+    Ng2SearchPipeModule
     NgxQRCodeModule
   ],
   providers: [
