@@ -88,8 +88,15 @@ export class ReunionFormComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       });
+    }else if(this.reunion.participantes.length==0){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'No seleccionaste ningun participante',
+        showConfirmButton: false,
+        timer: 1500
+      });
     }else{
-
     this.reunionService.addReunion(this.reunion).subscribe(
       result=>{
         console.log(result);
