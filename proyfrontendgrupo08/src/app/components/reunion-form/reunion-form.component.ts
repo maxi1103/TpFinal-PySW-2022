@@ -265,7 +265,8 @@ export class ReunionFormComponent implements OnInit {
             Object.assign(this.participante,element);
             this.participantes.push(this.participante);
              this.participante= new Empleado();
-             b=false;
+          }else{
+            b=false;
           }
            
         });
@@ -360,6 +361,7 @@ export class ReunionFormComponent implements OnInit {
   };
   //cargar un array auxilar de los participantes a agregar a la reunion
   agregarParticipantes(part:Empleado){
+   if(part._id!=null){
     this.participantesAgregar.push(part);
     var index=-1;
     var c=0;
@@ -371,6 +373,7 @@ export class ReunionFormComponent implements OnInit {
     });
     this.participantes.splice(index,1);
   }
+  }
   quitarParticipante(part:Empleado){
    
     this.participantesAgregar.splice(this.participantesAgregar.indexOf(part),1);
@@ -378,6 +381,7 @@ export class ReunionFormComponent implements OnInit {
   }
  //cargar un array auxilar de los recursos a utilizar en la reunion
  agregarRecursos(recu:Recurso){
+  if(recu._id!=null){
   this.recursosAgregar.push(this.recurso);
   var index=-1;
   var c=0
@@ -388,6 +392,7 @@ export class ReunionFormComponent implements OnInit {
     c++;
   });
   this.recursos.splice(index,1);
+}
 }
 quitarRecursos(recu:Recurso){
   this.recursosAgregar.splice(this.recursosAgregar.indexOf(recu),1);

@@ -110,7 +110,7 @@ var query4= Usuario.find();
 query4.exec(function (err,usuarios){
     if(!usuarios.length){
         const dependencia1= new Dependencia({
-            nombre: 'Contable'
+            nombre: 'Auditor'
         });
         dependencia1.save();
         const empleado= new Empleado({

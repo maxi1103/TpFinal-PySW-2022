@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Empleado } from 'src/app/models/empleado';
+import { Usuario } from 'src/app/models/usuario';
 import { EmpleadoService } from 'src/app/service/empleado.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import Swal from 'sweetalert2';
@@ -15,8 +16,8 @@ export class EmpleadoComponent implements OnInit {
 
   empleado!: Empleado;
   empleados!: Array<Empleado>;
-
-  constructor(private empleadoService: EmpleadoService, private route: Router,usuarioService:UsuarioService) {
+  
+  constructor(private empleadoService: EmpleadoService, private route: Router,private usuarioService:UsuarioService) {
     if(usuarioService.userLoggedIn()==false){
       Swal.fire({
         icon: 'error',
@@ -66,16 +67,43 @@ export class EmpleadoComponent implements OnInit {
       })
   }
 
-  cargarEmpleados() {
+
+  async cargarEmpleados() {
     this.empleados = new Array<Empleado>();
+    var usuarios:Array<Usuario>=[];
+    var usuario:Usuario;
+
+     this.usuarioService.getUsuarios().subscribe(
+      result=>{
+        usuarios= new Array<Usuario>();
+        result.forEach((element:Usuario)=>{
+          usuario= new Usuario();
+          Object.assign(usuario,element);
+          usuarios.push(usuario);
+        })
+      },
+      error=>{
+      }
+    )
+
     this.empleadoService.getEmpleados().subscribe(
       result => {
         result.forEach((element: any) => {
-          this.empleado = new Empleado();
-          Object.assign(this.empleado, element);
-          this.empleados.push(this.empleado);
+          var b=false;
+          usuarios.forEach((elementt:Usuario)=>{
+            if(elementt.empleado._id==element._id && elementt.username== "admin"){
+              b=true;
+            }
+          })
+          if(b==false){
+            this.empleado= new Empleado();
+            Object.assign(this.empleado,element);
+            this.empleados.push(this.empleado);
+             this.empleado= new Empleado();
+          }else{
+            b=false;
+          }
         })
-        console.log(this.empleados);
       }, 
       error => {
       }
