@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Reunion } from 'src/app/models/reunion';
+import { NotificacionService } from 'src/app/service/notificacion.service';
 import { ReunionService } from 'src/app/service/reunion.service';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
@@ -14,7 +15,7 @@ export class ReunionTablaComponent implements OnInit {
 
   reuniones:Array<Reunion>=[];
   reunion:Reunion;
-  constructor(private reunionService:ReunionService,private route:Router) { 
+  constructor(private reunionService:ReunionService,private route:Router,private notificacionService:NotificacionService) { 
     this.reuniones= new Array<Reunion>();
     this.reunion= new Reunion();  
     this.getReuniones();
@@ -58,6 +59,14 @@ export class ReunionTablaComponent implements OnInit {
               'success'
             );
             this.getReuniones();
+            this.notificacionService.deleteNotificacion(_id).subscribe(
+              result=>{
+                console.log(result);
+              },
+              error=>{
+                console.log(error);
+              }
+            )
           },
           error=>{
             console.log(error);

@@ -1,8 +1,22 @@
 <div class="container">
     <div class="row">
+      <div *ngIf="loginService.userLoggedIn()==false"> 
+        <h1> Reunion Validada con Exito</h1>
+       
+      </div>
       <div id="htmlData" >
+
         <h2>Resumen Reunion</h2>
         
+        <br>
+        <h6>Participantes:  
+          <li *ngFor="let emp of reunion.participantes">{{emp.Nombre}} {{emp.Apellido}} - Legajo: {{emp.Legajo}}
+          </li>
+        </h6>
+        <h6>Recursos: 
+        <li *ngFor="let recu of reunion.recursos">Recurso:{{recu.recurso}} - TipoRecurso: {{recu.tipoRecurso}}
+        </li> 
+        </h6>
         <table class="table table caption-top table-bordered  table-responsive mt-4">
           <thead class="table-danger">
             <tr>
@@ -12,8 +26,7 @@
               <th scope="col">Oficina</th>
               <th scope="col">TipoReunion</th>
               <th scope="col">EstadoReunion</th>
-              <th scope="col">Recursos</th>
-              <th scope="col">Participantes</th>
+            
               
             </tr>
           </thead>
@@ -25,17 +38,22 @@
               <td>{{reunion.oficina.numero}}</td>
               <td>{{reunion.tipoReunion}}</td>
               <td>{{reunion.estadoReunion}}</td>
-              <td><li style="list-style:none" *ngFor="let recu of reunion.recursos">{{recu.recurso}}</li></td>
-              <td><li style="list-style:none" *ngFor="let emp of reunion.participantes">{{emp.Nombre}}</li></td> 
-      
+             
             </tr> 
           </tbody>
           </table>
+        
+          <ngx-qrcode 
+            [elementType]="elementType" 
+            [value]="value"
+            cssClass="aclass">
+          </ngx-qrcode>
+      
       </div>
     </div>
   </div>
   
   
-  <div>
+  <div *ngIf="loginService.userLoggedIn()==true">
     <button class="btn col col-lg-4 btn-danger btn-block ml-4" (click)="downloadPDF()">Download PDF</button>
   </div>

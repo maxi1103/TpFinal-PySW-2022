@@ -37,7 +37,7 @@
         <td>{{item.Apellido}}</td>
         <td>{{item.Nombre}}</td>
         <td>{{item.Email}}</td>
-        <td>{{item.Dependencias}}</td>
+        <td><li style="list-style:none" *ngFor="let depe of item.Dependencias">{{depe.nombre}}</li></td>
       
         <td>
             <button class="btn btn-primary  mt-4 mb-3" (click)="modificarEmpleado(item)">MOD</button>

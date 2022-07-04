@@ -10,10 +10,10 @@ reunionCtrl.getReuniones= async (req,res)=>{
 reunionCtrl.createReunion= async(req,res)=>{
     
     var reunion=new Reunion(req.body);
-    console.log(reunion);
     try{
-        await reunion.save();
+        const reuniont= await reunion.save();
         res.json({
+            '_id' : reuniont._id,
             'status' : '1',
             'msg' : 'Reunion Guardada Correctamente',
         })

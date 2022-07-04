@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Empleado } from 'src/app/models/empleado';
+import { Notificacion } from 'src/app/models/notificacion';
 import { Oficina } from 'src/app/models/oficina';
 import { Recurso } from 'src/app/models/recurso';
 import { Reunion } from 'src/app/models/reunion';
 import { EmpleadoService } from 'src/app/service/empleado.service';
+import { NotificacionService } from 'src/app/service/notificacion.service';
 import { OficinaService } from 'src/app/service/oficina.service';
 import { RecursoService } from 'src/app/service/recurso.service';
 import { ReunionService } from 'src/app/service/reunion.service';
@@ -31,7 +33,8 @@ export class ReunionFormComponent implements OnInit {
  accion="";
 
   constructor(private oficinaService:OficinaService, private empleadoService:EmpleadoService,
-              private recursoService:RecursoService,private reunionService:ReunionService,private activatedRoute:ActivatedRoute,private router:Router ) { 
+              private recursoService:RecursoService,private reunionService:ReunionService,private activatedRoute:ActivatedRoute,private router:Router
+              ,private notificacionService:NotificacionService ) { 
     this.participantesAgregar= new Array<Empleado>();
     this.participantes= new Array<Empleado>();
     this.reunion= new Reunion();
@@ -88,6 +91,25 @@ export class ReunionFormComponent implements OnInit {
           showConfirmButton: false,
           timer: 1800
         });
+        var notificacion:Notificacion;
+        this.reunion.participantes.forEach((element:Empleado)=>{
+          notificacion= new Notificacion();
+          notificacion.leido=false;
+          notificacion.empleado=element;
+          this.reunion._id=result._id;
+          notificacion.reunion= this.reunion;
+          console.log(result._id);
+          this.notificacionService.createNotificacion(notificacion).subscribe(
+            result=>{
+              console.log(result);
+            },
+            error=>{
+              console.log(error);
+            }
+          );
+        });
+
+        
         this.router.navigate(['tablaReunion']);
       },
       error=>{

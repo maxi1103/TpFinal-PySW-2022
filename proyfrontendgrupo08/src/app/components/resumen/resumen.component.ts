@@ -5,20 +5,25 @@ import { Reunion } from 'src/app/models/reunion';
 import { Empleado } from 'src/app/models/empleado';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas'; // Todavía no lo usamos
-
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels, NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { UsuarioService} from 'src/app/service/usuario.service';
 @Component({
   selector: 'app-resumen',
   templateUrl: './resumen.component.html',
   styleUrls: ['./resumen.component.css']
 })
 export class ResumenComponent implements OnInit {
-
+  title = 'extraQRcode';
+  elementType = NgxQrcodeElementTypes.URL
+  correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH
+  value='';
+  
   reunion:Reunion;
   empleado!:Empleado;
   empleados!:Array<Empleado>;
   accion="";
 
-  constructor(private reunionService:ReunionService,private activatedRoute:ActivatedRoute) {
+  constructor(private reunionService:ReunionService,private activatedRoute:ActivatedRoute,public loginService:UsuarioService) {
       this.reunion=new Reunion();
       this.empleado=new Empleado();
       this.empleados=new Array<Empleado>();
@@ -56,6 +61,7 @@ export class ResumenComponent implements OnInit {
       }else{   
        this.accion="up";
        this.obtenerReunion(params['id']);  
+       this.value="http://localhost:4200/resumen/"+params['id'];
       }
     });
   }

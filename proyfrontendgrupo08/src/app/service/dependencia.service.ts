@@ -7,7 +7,7 @@ import { Dependencia } from '../models/dependencia';
   providedIn: 'root'
 })
 export class DependenciaService {
-  urlBase:string="http://localhost:3000/api/";
+  urlBase:string="http://localhost:3000/api/dependencia/";
 
   constructor(private _http:HttpClient) { 
   }
@@ -21,7 +21,7 @@ export class DependenciaService {
       })
     };
     let body=JSON.stringify(dependencia);
-    return this._http.post(this.urlBase + "dependencia",body,httpOptions)
+    return this._http.post(this.urlBase,body,httpOptions)
   }
 
   getDependencia(id:string):Observable<any>{
@@ -31,7 +31,7 @@ export class DependenciaService {
       params:new HttpParams({
       }).append("id",id)
     };
-    return this._http.get(this.urlBase+"dependencia/" + id,httpOptions);
+    return this._http.get(this.urlBase+ id,httpOptions);
 }
 
   getDependencias():Observable<any>{
@@ -41,7 +41,7 @@ export class DependenciaService {
         params:new HttpParams({
         }),
       };
-      return this._http.get(this.urlBase+ "dependencia",httpOptions);
+      return this._http.get(this.urlBase,httpOptions);
   }
 }
 

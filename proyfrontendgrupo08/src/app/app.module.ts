@@ -22,6 +22,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { ResumenComponent } from './components/resumen/resumen.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -54,7 +55,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    FullCalendarModule
+    FullCalendarModule,
+    NgxQRCodeModule
   ],
   providers: [
     UsuarioService
