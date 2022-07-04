@@ -1,3 +1,4 @@
+
 <div class="contaainer-fluid">
   <app-header></app-header>
   <div class="container-xl">
@@ -5,6 +6,7 @@
       <div class="col-12 col-md-6">
         <h1>Alta de Reunion</h1>
         <form action="" class="border border-dark p-3" #reunionForm="ngForm">
+          
           <div class="row">
             <div class="col">
               <div class="form-group mb-3">
@@ -128,8 +130,6 @@
                 <tr>
                   <th scope="col">Legajo</th>
                   <th scope="col">Apellido y Nombre</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Dependencias</th>
                   <th scope="col">Acciones</th>
                 </tr>
               </thead>
@@ -137,8 +137,6 @@
                 <tr *ngFor="let part of participantesAgregar">
                   <td>{{part.Legajo}}</td>
                   <td>{{part.Apellido}}, {{part.Nombre}}</td>
-                  <td>{{part.Email}}</td>
-                  <td>{{part.Dependencias}}</td>
                   <td>
                     <button type="button" class="btn btn-secondary" (click)="quitarParticipante(part)">Quitar
                       Participante</button>

@@ -4,7 +4,7 @@ const Oficina= require('./oficina');
 const Recurso= require('./recurso');
 const Empleado = require('./empleado');
 const ReunionSchema = new Schema({
-    titulo:{type: String,required:true},
+    titulo:{type: String},
     fecha:{type: String,required:true},
     horaInicio:{type: String,required:true},
     horaFin:{type: String,required:true},

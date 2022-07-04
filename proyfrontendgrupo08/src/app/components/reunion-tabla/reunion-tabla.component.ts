@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Reunion } from 'src/app/models/reunion';
+import { NotificacionService } from 'src/app/service/notificacion.service';
 import { ReunionService } from 'src/app/service/reunion.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import Swal from 'sweetalert2';
@@ -20,8 +21,8 @@ export class ReunionTablaComponent implements OnInit {
   p2!:string;
   p3!:string;
   select!:string;
-
-  constructor(private reunionService:ReunionService,private route:Router,private usuarioService:UsuarioService) {
+  
+  constructor(private reunionService:ReunionService,private route:Router,private usuarioService:UsuarioService,private notificacionService:NotificacionService) {
     if(usuarioService.userLoggedIn()==false){
       Swal.fire({
         icon: 'error',
@@ -96,6 +97,14 @@ export class ReunionTablaComponent implements OnInit {
               'success'
             );
             this.getReuniones();
+            this.notificacionService.deleteNotificacion(_id).subscribe(
+              result=>{
+                console.log(result);
+              },
+              error=>{
+                console.log(error);
+              }
+            )
           },
           error=>{
             console.log(error);

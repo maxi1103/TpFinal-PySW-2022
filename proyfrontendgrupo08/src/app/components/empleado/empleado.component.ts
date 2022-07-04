@@ -32,11 +32,11 @@ export class EmpleadoComponent implements OnInit {
   }
 
   agregarEmpleado() {
-    this.route.navigate(['empleado-form', 0]);
+    this.route.navigate(['formEmpleado', 0]);
   }
 
   modificarEmpleado(empleado: Empleado) {
-    this.route.navigate(['empleado-form', empleado._id]);
+    this.route.navigate(['formEmpleado', empleado._id]);
   }
 
   eliminarEmpleado(empleado: Empleado) {

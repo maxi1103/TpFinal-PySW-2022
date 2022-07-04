@@ -2,7 +2,7 @@
     <app-header></app-header>
     <div class="container-xl">
         <div class="row">
-            <h1>Agenda</h1>
+            <h1>Audiencias</h1>
             <div class="col">
                 <table class="table table-hover table-bordered">
                     <thead>
@@ -28,7 +28,13 @@
                             <td>{{item.tipoReunion}}</td>
                             <td>{{item.estadoReunion}}</td>
                             <td><li style="list-style:none" *ngFor="let emp of item.participantes">{{emp.Nombre}} {{emp.Apellido}}</li></td>
-                            <td><div class="text-center"><button type="button" class="btn btn-outline-success" (click)="verQr()">Ver Qr</button></div></td>
+                            <td>
+                                <ngx-qrcode 
+                                      [elementType]="elementType" 
+                                      [value]="obtenerQR(item._id)"
+                                      cssClass="aclass">
+                                 </ngx-qrcode>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

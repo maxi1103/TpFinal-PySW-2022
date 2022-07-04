@@ -8,7 +8,6 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-empleado-form',
@@ -17,7 +16,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class EmpleadoFormComponent implements OnInit {
 
-  listaDependencias: Array<Dependencia>=new Array<Dependencia>();
+  dependencias: Array<Dependencia>=new Array<Dependencia>();
+  dependenciasAgregar:Array<Dependencia>= new Array<Dependencia>();
+  dependencia:Dependencia;
   empleado!:Empleado;
   accion = "";
 
@@ -26,19 +27,32 @@ export class EmpleadoFormComponent implements OnInit {
       private activatedRoute: ActivatedRoute,
       private dependenciaService: DependenciaService,
       private empleadoService:EmpleadoService) {
-        if(usuarioService.userLoggedIn()==false){
-          Swal.fire({
-            icon: 'error',
-            title: 'Acceso denegado',
-            text: 'Por favor inicia sesion.',
-          })
-          router.navigate(['login']);
-        } 
+
+  
+    this.dependencia= new Dependencia();
+
+    if(!this.usuarioService.userLoggedIn()){
+      Swal.fire({
+        icon: 'error',
+        title: 'Acceso denegado',
+        text: 'Necesita iniciar sesion!'
+      })
+      this.router.navigate(['login']); 
+    }else{
+      if(this.usuarioService.userPerfil()!="Administrador"){
+        Swal.fire({
+          icon: 'error',
+          title: 'Acceso Prohibido...',
+          text: 'No tiene los permisos necesarios!'
+        })
+
+        this.router.navigate(['home']);
+      }
+    }
   }
 
   altaEmpleado(){
-    console.log(this.empleado);
-    
+    this.empleado.Dependencias=this.dependenciasAgregar;
     this.empleadoService.createEmpleado(this.empleado).subscribe(
       result => {
         console.log("1"+this.empleado);
@@ -72,25 +86,25 @@ export class EmpleadoFormComponent implements OnInit {
       if (params.id== "0") {
         this.accion = "new"; 
         this.iniciarEmpleado();
-        //this.cargarDependencias();
+        this.cargarDependencias();
+        console.log(this.dependencias);;
 
       } else {
         this.accion = "update";
         this.iniciarEmpleado();
-        //this.cargarDependencias();
         this.cargarEmpleado(params.id);
       }
     });
   }
 
   async cargarDependencias() {
-    this.listaDependencias = new Array<Dependencia>();
+    this.dependencias = new Array<Dependencia>();
     this.dependenciaService.getDependencias().subscribe(
       result => {
         var unaDependencia = new Dependencia();
         result.forEach((element: any) => {
           Object.assign(unaDependencia, element);
-          this.listaDependencias.push(unaDependencia);
+          this.dependencias.push(unaDependencia);
           unaDependencia = new Dependencia();
         })
       })
@@ -117,10 +131,17 @@ export class EmpleadoFormComponent implements OnInit {
   //llama al servicio para cargar un empleado
     this.empleadoService.getEmpleado(id).subscribe(
       result => {
+        this.empleado= new Empleado();
         Object.assign(this.empleado, result);
-      console.log(result);
-            //this.empleado.Dependencias= this.listaDependencias.find(item => (item._id == this.empleado.Dependencias._id))!;
-          },
+
+      //Dependencias de la reunion
+      this.empleado.Dependencias.forEach((element:Dependencia)=>{
+        this.dependencia= new Dependencia();
+        Object.assign(this.dependencia,element);
+        this.agregarDependencia(this.dependencia);
+        this.dependencia= new Dependencia();
+      });
+      },
       error => {
         console.log(error);
         alert("error");
@@ -133,6 +154,25 @@ export class EmpleadoFormComponent implements OnInit {
 
   iniciarEmpleado() {
     this.empleado = new Empleado();
+  }
+
+  //cargar un array auxilar de los participantes a agregar a la reunion
+  agregarDependencia(depe:Dependencia){
+    this.dependenciasAgregar.push(depe);
+    var index=-1;
+    var c=0;
+    this.dependencias.forEach((element:Dependencia)=>{
+      if(depe._id==element._id){
+        index=c;
+      }
+      c++;
+    });
+    this.dependencias.splice(index,1);
+  }
+  quitarDependencia(depe:Dependencia){
+   
+    this.dependenciasAgregar.splice(this.dependenciasAgregar.indexOf(depe),1);
+    this.dependencias.push(depe);
   }
 
 
