@@ -47,11 +47,7 @@ query.exec( function (err,dependencias){
             nombre: 'Personal'
            });
         dependencia2.save();
-            const dependencia3= new Dependencia({
-            nombre: 'Auditoria'
-           });
-        dependencia3.save();
-        
+
     }
 });
 
@@ -114,14 +110,14 @@ var query4= Usuario.find();
 query4.exec(function (err,usuarios){
     if(!usuarios.length){
         const dependencia1= new Dependencia({
-            nombre: 'Programador'
+            nombre: 'Contable'
         });
         dependencia1.save();
         const empleado= new Empleado({
-            Apellido: 'Lima',
-            Legajo: '3023',
-            Nombre: 'Natanael',
-            Email:'natanael@gmail.com',
+            Apellido: 'admin',
+            Legajo: '1999',
+            Nombre: 'admin',
+            Email:'gmail@gmail.com',
             Dependencias:dependencia1
           });
           empleado.save();
