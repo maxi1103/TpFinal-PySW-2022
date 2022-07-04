@@ -4,7 +4,6 @@
         <a class="navbar-brand">
           <img src="./assets/dn.ico" alt="" width="33" height="35">
         </a>
-
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="home" class="nav-link px-2 text-white">Inicio</a></li>
           <div *ngIf="loginService.userLoggedIn()&&loginService.userPerfil()=='Administrador'">
@@ -38,10 +37,9 @@
           </div>  
         </ul>
         <div *ngIf="!loginService.userLoggedIn()">
-          <button class="p-1 me-2  btn btn-outline-light" [routerLink]="['login']" routerLinkActive="ruta-activa">Iniciar Sesion</button>
+          <button class="p-1 me-2  btn btn-outline-light" (click)="login()">Iniciar Sesion</button>
           <!-- <button class="p-1 btn btn-warning" (click)="usuarioForm()">Registrarse</button> -->
         </div>
-
         <div class="dropdown text-end" *ngIf="loginService.userLoggedIn()">
           <a href="#" class="d-block link-dark text-decoration-none text-white dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="./assets/person.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -50,7 +48,7 @@
             <li><a class="dropdown-item disabled" disabled >Nombre : {{loginService.userLogged()}} </a></li>
             <li><a class="dropdown-item disabled" disabled >Perfil: {{loginService.userPerfil()}}</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item"  [routerLink]="['login']" (click)="logout()">Cerrar Sesion</a></li>
+            <li><a class="dropdown-item" (click)="logout()">Cerrar Sesion</a></li>
           </ul>
         </div>
       </div>
