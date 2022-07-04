@@ -30,4 +30,10 @@
   .dropdown-toggle {
     outline: 0;
   }
+  .margen{
+    margin-bottom: 5rem;
+  }
+  .color{
+    background-color: #026842;
+  }
   
