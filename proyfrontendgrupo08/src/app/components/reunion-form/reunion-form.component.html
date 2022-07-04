@@ -1,3 +1,4 @@
+
 <div class="contaainer-fluid">
   <app-header></app-header>
   <div class="container-xl">
@@ -6,16 +7,7 @@
         <h1>Alta de Reunion</h1>
         <form action="" class="border border-dark p-3" #reunionForm="ngForm">
           <div class="row">
-            <div class="col">
-              <div class="form-group mb-3">
-                <label for="fecha" class="mt-3">Titulo:</label>
-                <input type="text" class="form-control" name="titulo" id="titulo" [(ngModel)]="reunion.titulo"
-                  #titulo="ngModel" required>
-                <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)" class="alert alert-danger mt-1">
-                  <div *ngIf="titulo.errors?.['required']">Campo Obligatorio!</div>
-                </div>
-              </div>
-            </div>
+            
             <div class="col">
               <div class="form-group mb-3">
                 <label for="fecha" class="mt-3">Fecha:</label>
@@ -128,8 +120,6 @@
                 <tr>
                   <th scope="col">Legajo</th>
                   <th scope="col">Apellido y Nombre</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Dependencias</th>
                   <th scope="col">Acciones</th>
                 </tr>
               </thead>
@@ -137,8 +127,6 @@
                 <tr *ngFor="let part of participantesAgregar">
                   <td>{{part.Legajo}}</td>
                   <td>{{part.Apellido}}, {{part.Nombre}}</td>
-                  <td>{{part.Email}}</td>
-                  <td>{{part.Dependencias}}</td>
                   <td>
                     <button type="button" class="btn btn-secondary" (click)="quitarParticipante(part)">Quitar
                       Participante</button>

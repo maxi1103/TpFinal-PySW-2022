@@ -298,25 +298,23 @@ export class EstadisticasComponent implements OnInit {
     var c=0;
     this.reuniones.forEach((element:Reunion)=>{
       array.forEach((elementt:Date)=>{
-        if(new Date(elementt)<new Date(this.dateStart)){
-          console.log("pase por aqui?");
+     
+        if(new Date(elementt).getFullYear()<=new Date(this.dateStart).getFullYear() && new Date(elementt).getMonth()<=new Date(this.dateStart).getMonth()&&new Date(elementt).getDay()<=new Date(this.dateStart).getDay()){
           c++;
           this.mostrar[index]=this.mostrar[index]+c;
         }
-        if(new Date(element.fecha)>new Date(this.dateStart) && new Date(element.fecha)<new Date(this.dateEnd)){
-          console.log("pase por aqui?");
+        if((new Date(element.fecha).getFullYear()>=new Date(this.dateStart).getFullYear() &&   new Date(element.fecha).getMonth()>=new Date(this.dateStart).getMonth() && new Date(element.fecha).getDay()>=new Date(this.dateStart).getDay()) && (new Date(element.fecha).getFullYear<=new Date(this.dateEnd).getFullYear && new Date(element.fecha).getMonth<=new Date(this.dateEnd).getMonth && new Date(element.fecha).getDay<=new Date(this.dateEnd).getDay)){
           c++;
           this.mostrar[index]=this.mostrar[index]+c;
         }
-        if(new Date(element.fecha)>new Date(this.dateEnd)){
-          console.log("pase por aqui?");
+        if(new Date(element.fecha).getFullYear()>=new Date(this.dateEnd).getFullYear() && new Date(element.fecha).getMonth()>=new Date(this.dateEnd).getMonth() && new Date(element.fecha).getDay()>=new Date(this.dateEnd).getDay()){
           c++;
           this.mostrar[index]=this.mostrar[index]+c; 
         }
 
         index++;
       });
-      c=0;
+      c=0;  
       index=0;
     });
     console.log(this.mostrar);

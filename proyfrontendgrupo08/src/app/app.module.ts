@@ -22,6 +22,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { ResumenComponent } from './components/resumen/resumen.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { AgendaComponent } from './components/agenda/agenda.component';
 
@@ -46,7 +47,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CalendarioComponent,
     SiNoPipe,
     ReunionTablaComponent,
-    UsuarioFormComponent,
     EstadisticasComponent,
     ResumenComponent,
     AgendaComponent
@@ -56,8 +56,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule,
-    FullCalendarModule
+    FullCalendarModule,
+    NgxQRCodeModule
   ],
   providers: [
     UsuarioService,

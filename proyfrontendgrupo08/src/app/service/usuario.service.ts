@@ -88,6 +88,15 @@ export class UsuarioService {
     return this._http.get("http://localhost:3000/api/empleado",httpOptions);
   }
 
+  getUsuarios():Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+
+      }),
+    };
+    return this._http.get(this.hostBase,httpOptions);
+  }
+
   /**
    * Peticion POST para dar de alta un Usuario
    * @param pasaje 

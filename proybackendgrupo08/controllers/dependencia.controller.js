@@ -16,5 +16,10 @@ const dependenciaCtrl = {}
     }
 }
 
+dependenciaCtrl.getDependencias=async (req,res)=>{
+    var dependencias = await Dependencia.find();
+    res.json(dependencias);
+}
+
 
 module.exports = dependenciaCtrl;
