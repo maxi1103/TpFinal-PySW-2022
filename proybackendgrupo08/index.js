@@ -110,29 +110,14 @@ query5.exec(function(err,recursos){
 }) 
 
 
-var query3 =Empleado.find();
 var query4= Usuario.find();
-
-var id;
-query3.exec (function (err,empleados){
-    id=empleados[0]._id;
-    if(!empleados.length){
-        const empleado= new Empleado({
-            Apellido: 'admin',
-            Legajo: 123,
-            Nombre: 'admin',
-            Email: 'admin@gmail.com'
-        });
-        empleado.save();
-    }
-})
 query4.exec(function (err,usuarios){
     if(!usuarios.length){
         const usuario= new Usuario({
             username: 'admin',
             password: 'admin',
-            perfil: 'Administrador',
-            empleado: id
+            perfil: 'Administrador'
+            
           });
           usuario.save();
     }
