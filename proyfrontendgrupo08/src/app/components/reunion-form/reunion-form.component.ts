@@ -8,6 +8,7 @@ import { EmpleadoService } from 'src/app/service/empleado.service';
 import { OficinaService } from 'src/app/service/oficina.service';
 import { RecursoService } from 'src/app/service/recurso.service';
 import { ReunionService } from 'src/app/service/reunion.service';
+import { UsuarioService } from 'src/app/service/usuario.service';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 
@@ -31,7 +32,15 @@ export class ReunionFormComponent implements OnInit {
  accion="";
 
   constructor(private oficinaService:OficinaService, private empleadoService:EmpleadoService,
-              private recursoService:RecursoService,private reunionService:ReunionService,private activatedRoute:ActivatedRoute,private router:Router ) { 
+              private recursoService:RecursoService,private reunionService:ReunionService,private activatedRoute:ActivatedRoute,private router:Router,private usuarioService:UsuarioService ) {
+                if(usuarioService.userLoggedIn()==false){
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Acceso denegado',
+                    text: 'Por favor inicia sesion.',
+                  })
+                  router.navigate(['login']);
+                }             
     this.participantesAgregar= new Array<Empleado>();
     this.participantes= new Array<Empleado>();
     this.reunion= new Reunion();
@@ -246,7 +255,6 @@ export class ReunionFormComponent implements OnInit {
       }
     )
   }
-  
  
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{

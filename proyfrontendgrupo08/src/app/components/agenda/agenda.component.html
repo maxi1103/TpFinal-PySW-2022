@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <app-header></app-header>
+    <div class="container-xl">
+        <div class="row">
+            <h1>Agenda</h1>
+            <div class="col">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Fecha</th>
+                            <th>Hora Inicio - Fin</th>
+                            <th>Oficina</th>
+                            <th>Recursos</th>
+                            <th>Prioridad</th>
+                            <th>Estado</th>
+                            <th>Participantes</th>
+                            <th>Codigo QR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of reunionesemp">
+                            <td>{{item.titulo}}</td>
+                            <td>{{item.fecha}}</td>
+                            <td>{{item.horaInicio}} - {{item.horaFin}}</td>
+                            <td>{{item.oficina.numero}}</td>
+                            <td><li style="list-style:none" *ngFor="let recu of item.recursos">{{recu.recurso}}</li></td>
+                            <td>{{item.tipoReunion}}</td>
+                            <td>{{item.estadoReunion}}</td>
+                            <td><li style="list-style:none" *ngFor="let emp of item.participantes">{{emp.Nombre}} {{emp.Apellido}}</li></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

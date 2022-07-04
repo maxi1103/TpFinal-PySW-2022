@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/service/usuario.service';
-
-
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
 
 @Component({
   selector: 'app-login',
@@ -42,16 +42,24 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("userid", user.userid);
         sessionStorage.setItem("perfil", user.perfil);
         sessionStorage.setItem("idEmp",user.empleado._id);
-        //redirigimos a home o a pagina que llamo
-        //this.router.navigateByUrl(this.returnUrl);
+        sessionStorage.setItem("token", user.token);
+        //redireccion a la pagina home
         this.router.navigate(['home']);
       } else {
         //usuario no encontrado muestro mensaje en la vista
-        this.msglogin="Credenciales incorrectas..";
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Credenciales Incorrectas!',
+        });
       }
     },
       (  error: any) => {
-        alert("Error de conexion");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Error de conexion!',
+        });
         console.log("error en conexion");
         console.log(error);
       });

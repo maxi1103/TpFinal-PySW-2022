@@ -15,11 +15,15 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     this.loginService.logout();
+    this.router.navigate(['login']);
   }
 
   ngOnInit(): void {
   }
   usuarioForm(){
     this.router.navigate(['formUsuario']);
+  }
+  login(){
+    this.router.navigate(['login']);
   }
 }

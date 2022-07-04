@@ -5,6 +5,9 @@ import { Reunion } from 'src/app/models/reunion';
 import { Empleado } from 'src/app/models/empleado';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas'; // Todavía no lo usamos
+import { UsuarioService } from 'src/app/service/usuario.service';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
 
 @Component({
   selector: 'app-resumen',
@@ -18,10 +21,18 @@ export class ResumenComponent implements OnInit {
   empleados!:Array<Empleado>;
   accion="";
 
-  constructor(private reunionService:ReunionService,private activatedRoute:ActivatedRoute) {
-      this.reunion=new Reunion();
-      this.empleado=new Empleado();
-      this.empleados=new Array<Empleado>();
+  constructor(private reunionService:ReunionService,private activatedRoute:ActivatedRoute,private usuarioService:UsuarioService,private router:Router) {
+    if(usuarioService.userLoggedIn()==false){
+      Swal.fire({
+        icon: 'error',
+        title: 'Acceso denegado',
+        text: 'Por favor inicia sesion.',
+      })
+      router.navigate(['login']);
+    } 
+    this.reunion=new Reunion();
+    this.empleado=new Empleado();
+    this.empleados=new Array<Empleado>();
   }
 
   downloadPDF() {

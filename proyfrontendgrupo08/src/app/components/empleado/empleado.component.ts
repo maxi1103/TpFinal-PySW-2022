@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Empleado } from 'src/app/models/empleado';
 import { EmpleadoService } from 'src/app/service/empleado.service';
+import { UsuarioService } from 'src/app/service/usuario.service';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
 
 @Component({
   selector: 'app-empleado',
@@ -13,7 +16,15 @@ export class EmpleadoComponent implements OnInit {
   empleado!: Empleado;
   empleados!: Array<Empleado>;
 
-  constructor(private empleadoService: EmpleadoService, private route: Router) {
+  constructor(private empleadoService: EmpleadoService, private route: Router,usuarioService:UsuarioService) {
+    if(usuarioService.userLoggedIn()==false){
+      Swal.fire({
+        icon: 'error',
+        title: 'Acceso denegado',
+        text: 'Por favor inicia sesion.',
+      })
+      route.navigate(['login']);
+    } 
     this.cargarEmpleados();
   }
 
@@ -32,13 +43,25 @@ export class EmpleadoComponent implements OnInit {
     this.empleadoService.deleteEmpleado(empleado._id).subscribe(
       result => {
         if (result.status == "1") {
-          alert(result.msg);
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Empleado eliminado correctamente',
+            showConfirmButton: false,
+            timer: 1500
+          });
           this.cargarEmpleados();
         }
       },
       error => {
         if (error.status == "0") {
-          alert(error.msg);
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'No se pudo eliminar',
+            showConfirmButton: false,
+            timer: 1500
+          });
         }
       })
   }

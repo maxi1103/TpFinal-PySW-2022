@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { LoginComponent } from './components/login/login.component';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmpleadoFormComponent } from './components/empleado-form/empleado-form.component';
@@ -22,6 +22,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { ResumenComponent } from './components/resumen/resumen.component';
+import { TokenInterceptorService } from './service/token-interceptor.service';
+import { AgendaComponent } from './components/agenda/agenda.component';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -46,7 +48,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ReunionTablaComponent,
     UsuarioFormComponent,
     EstadisticasComponent,
-    ResumenComponent
+    ResumenComponent,
+    AgendaComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,14 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FullCalendarModule
   ],
   providers: [
-    UsuarioService
+    UsuarioService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+
+    }
+
   ],
   bootstrap: [AppComponent]
 })
