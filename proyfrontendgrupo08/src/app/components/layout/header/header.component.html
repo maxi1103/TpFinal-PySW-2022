@@ -44,6 +44,9 @@
           <div *ngIf="loginService.userLoggedIn()&&loginService.userPerfil()!='Administrador'">
             <li><a href="agenda" class="nav-link text-white">Audiencias</a></li>
           </div>
+          <div *ngIf="loginService.userLoggedIn()&&loginService.userPerfil()!='Administrador'">
+            <li><a href="busqueda" class="nav-link text-white">Busquedas</a></li>
+          </div>
         </ul>
         <div class="me-4 dropdown text-end" *ngIf="loginService.userPerfil()=='Participante'">
           <a href="#" class="d-block link-dark text-decoration-none text-white dropdown-toggle" id="dropdownUser2"

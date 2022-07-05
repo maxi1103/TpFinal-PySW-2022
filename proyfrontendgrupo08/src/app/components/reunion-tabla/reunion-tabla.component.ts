@@ -13,7 +13,7 @@ import 'sweetalert2/src/sweetalert2.scss';
   styleUrls: ['./reunion-tabla.component.css']
 })
 export class ReunionTablaComponent implements OnInit {
-
+  estado:string;
   reuniones:Array<Reunion>=[];
   reunion:Reunion;
   searchText: any;
@@ -30,6 +30,7 @@ export class ReunionTablaComponent implements OnInit {
     this.reuniones= new Array<Reunion>();
     this.reunion= new Reunion();  
     this.getReuniones();
+    this.estado= "Pendiente";
   }
 
   ngOnInit(): void {
@@ -101,4 +102,31 @@ export class ReunionTablaComponent implements OnInit {
   imprimirPDF(_id:string){
     this.route.navigate(['resumen',_id]);
   }
+  modificarEstado(reunion:Reunion){
+    reunion.estadoReunion=this.estado;
+    this.reunionService.updateReunion(reunion).subscribe(
+      result=>{
+        console.log(result);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Estado de Reunion Cambiado correctamente!',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      },
+      error=>{
+        console.log(error);
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'No se pudo realizar la operacion',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    )
+  }
+
+
 }

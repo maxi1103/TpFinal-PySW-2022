@@ -18,18 +18,23 @@ reuniones!:Array<Reunion>;
   ngOnInit(): void {
   }
 
-  buscarTitulo(){
+  async buscarTitulo(){
+    this.reuniones= new Array<Reunion>();
     this.reunionService.gerReunionesTitulo(this.titulo).subscribe(
       result=>{
-        alert(result);
-      this.reunion=new Reunion();
-      Object.assign(this.reunion,result);
-      console.log(this.reunion);
-      alert(this.reunion.titulo);
+        result.forEach((element:Reunion)=>{
+          this.reunion=new Reunion();
+          Object.assign(this.reunion,element);
+          this.reuniones.push(this.reunion);
+        });
+        
+
       },
       error=>{
         console.log(error);
       }
     )
+
+   
   }
 }

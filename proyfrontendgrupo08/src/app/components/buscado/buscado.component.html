@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-9">
                   <div class="search-name w-50">
-                    <input class="form-control" type="text" name="search" [(ngModel)]="titulo" autocomplete="on"
+                    <input class="form-control" type="text" name="search" [(ngModel)]="titulo" autocomplete="off"
                       placeholder="Buscar">
                       <button class="btn btn-primary" (click)="buscarTitulo()">Buscar</button>
                   </div>
@@ -33,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr >
+                        <tr *ngFor="let reunion of reuniones">
                             <td>{{reunion.titulo}}</td>
                             <td>{{reunion.fecha}}</td>
                             <td>{{reunion.horaInicio}} - {{reunion.horaFin}}</td>
