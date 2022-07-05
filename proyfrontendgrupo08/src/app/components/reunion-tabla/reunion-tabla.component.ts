@@ -102,9 +102,19 @@ export class ReunionTablaComponent implements OnInit {
   imprimirPDF(_id:string){
     this.route.navigate(['resumen',_id]);
   }
-  modificarEstado(reunion:Reunion){
-    reunion.estadoReunion=this.estado;
-    this.reunionService.updateReunion(reunion).subscribe(
+  modificarEstado(reu:Reunion){
+    console.log(reu);
+    this.reunion=new Reunion();
+    this.reunion=reu;
+
+    
+    
+  }
+
+  actualizarEstado(){
+    this.reunion.estadoReunion=this.estado;
+    
+    this.reunionService.updateReunion(this.reunion).subscribe(
       result=>{
         console.log(result);
         Swal.fire({
