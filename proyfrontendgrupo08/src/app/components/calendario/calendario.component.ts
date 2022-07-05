@@ -21,6 +21,7 @@ export class CalendarioComponent implements OnInit {
   reuniones!:Array<Reunion>;
   titulo!:string;
   inicio!:string;
+  fin!:string;
   events:any=[];
 
   constructor(private reunionService:ReunionService, private usuarioService:UsuarioService,private router:Router) {
@@ -87,9 +88,16 @@ export class CalendarioComponent implements OnInit {
    * Metodo para hacer algo cuando ckickeamos en un evento 
    * @param arg 
    */
-  handleDateClick(arg:any){
+   handleDateClick(arg:any){
     this.titulo = arg.event._def.title;
     this.inicio = arg.event.startStr;
-    console.log("TITULO DEL EVENTO "+arg.event._def.title + " Inicia: "+this.inicio);
+    this.fin = arg.event.endStr;
+    let res1:string=this.inicio.slice(11,19);
+    let res2:string=this.fin.slice(11,19);
+    console.log(res1);
+    Swal.fire({
+      title: 'Titulo: '+this.titulo,
+      text: 'Inicia: '+res1+' / '+'Finaliza: '+res2
+    });
   }
 }
