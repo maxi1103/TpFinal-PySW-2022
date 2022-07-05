@@ -9,6 +9,7 @@
                 <div class="col-3">
                   <h3 class="text-end">Busqueda:</h3>
                 </div>
+                
                 <div class="col-9">
                   <div class="search-name w-50">
                     <input class="form-control" type="text" name="search" [(ngModel)]="titulo" autocomplete="off"
@@ -17,6 +18,7 @@
                   </div>
                 </div>
               </div>
+              
             <div class="col">
                 <table class="table table-hover table-bordered table-responsive">
                     <thead class="table-success">
@@ -37,6 +39,8 @@
                             <td>{{reunion.titulo}}</td>
                             <td>{{reunion.fecha}}</td>
                             <td>{{reunion.horaInicio}} - {{reunion.horaFin}}</td>
+                            <div *ngIf="participa(reunion)">
+                           
                             <td>{{reunion.oficina.numero}}</td>
                             <td>
                                 <li style="list-style:none" *ngFor="let recu of reunion.recursos">{{recu.recurso}}</li>
@@ -47,7 +51,7 @@
                                 <li style="list-style:none" *ngFor="let emp of reunion.participantes">{{emp.Nombre}}
                                     {{emp.Apellido}}</li>
                             </td>
-                          
+                        </div>
                         </tr>
                     </tbody>
                 </table>
