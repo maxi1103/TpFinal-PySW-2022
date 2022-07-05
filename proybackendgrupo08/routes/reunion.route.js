@@ -6,6 +6,8 @@ const router = express.Router();
 router.get('/', reunionCtrl.getReuniones);
 router.post('/', reunionCtrl.createReunion);
 router.get('/:id', reunionCtrl.getReunion);
+router.get('/buscado/:titulo', reunionCtrl.getReunionTitulo);
+
 router.put('/:id', reunionCtrl.editReunion);
 router.delete('/:id',reunionCtrl.deleteReunion);
 router.put('/:id/recurso/:idrecurso', reunionCtrl.addRecurso);

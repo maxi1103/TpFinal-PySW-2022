@@ -7,6 +7,18 @@ reunionCtrl.getReuniones= async (req,res)=>{
     var reunion= await Reunion.find().populate('recursos').populate('oficina').populate('participantes');
     res.json(reunion);
 }
+
+
+reunionCtrl.getReunionTitulo = async (req, res) => {
+    var criteria={};
+    if(req.query.titulo!=null && req.query.titulo!=""){
+       criteria.titulo=req.query.titulo;
+    }
+   // {'monedaOrigen':ars,'monedaDestino':usd};
+    var buscado = await Reunion.find(criteria);
+ res.json(buscado);
+ }
+ 
 reunionCtrl.createReunion= async(req,res)=>{
     
     var reunion=new Reunion(req.body);
