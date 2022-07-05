@@ -6,7 +6,7 @@ const router = express.Router();
 //definimos las rutas para la gestion de agente
 router.get('/',autCtrl.verifyToken, reunionCtrl.getReuniones);
 router.post('/',autCtrl.verifyToken, reunionCtrl.createReunion);
-router.get('/:id',autCtrl.verifyToken, reunionCtrl.getReunion);
+router.get('/:id', reunionCtrl.getReunion);
 router.get('/buscado/:titulo',autCtrl.verifyToken, reunionCtrl.getReunionTitulo);
 
 router.put('/:id',autCtrl.verifyToken, reunionCtrl.editReunion);
