@@ -10,12 +10,13 @@ reunionCtrl.getReuniones= async (req,res)=>{
 
 
 reunionCtrl.getReunionTitulo = async (req, res) => {
-    var criteria={};
+    /* var criteria={};
     if(req.query.titulo!=null && req.query.titulo!=""){
        criteria.titulo=req.query.titulo;
     }
-   // {'monedaOrigen':ars,'monedaDestino':usd};
-    var buscado = await Reunion.find(criteria);
+    {'monedaOrigen':ars,'monedaDestino':usd};
+    var buscado = await Reunion.find(criteria); */
+    var buscado = await Reunion.find({titulo:req.params.titulo}).populate('recursos').populate('oficina').populate('participantes');
  res.json(buscado);
  }
  

@@ -11,6 +11,7 @@ import { EstadisticasComponent } from './components/estadisticas/estadisticas.co
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { ResumenComponent } from './components/resumen/resumen.component';
 import { AgendaComponent } from './components/agenda/agenda.component';
+import { BuscadoComponent } from './components/buscado/buscado.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path:'estadisticas', component: EstadisticasComponent},
   {path:'resumen/:id',component:ResumenComponent},
   {path:'agenda',component:AgendaComponent},
+  {path:'busqueda',component:BuscadoComponent},
   {path:'**',pathMatch:'full',redirectTo:'home'}
 ];
 

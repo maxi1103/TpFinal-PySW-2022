@@ -10,8 +10,9 @@ import { ReunionService } from 'src/app/service/reunion.service';
 export class BuscadoComponent implements OnInit {
 titulo!:string;
 reunion!:Reunion;
+reuniones!:Array<Reunion>;
   constructor(private reunionService:ReunionService) {
-    
+    this.reunion=new Reunion();
   }
 
   ngOnInit(): void {
@@ -20,9 +21,14 @@ reunion!:Reunion;
   buscarTitulo(){
     this.reunionService.gerReunionesTitulo(this.titulo).subscribe(
       result=>{
-this.reunion=new Reunion();
-Object.assign(this.reunion,result);
-
+        alert(result);
+      this.reunion=new Reunion();
+      Object.assign(this.reunion,result);
+      console.log(this.reunion);
+      alert(this.reunion.titulo);
+      },
+      error=>{
+        console.log(error);
       }
     )
   }

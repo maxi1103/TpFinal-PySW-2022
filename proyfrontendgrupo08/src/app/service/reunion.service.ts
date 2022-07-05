@@ -44,7 +44,7 @@ export class ReunionService {
       headers: new HttpHeaders({
       })
     }
-    return this._http.get(this.hostBase+"/buscado/"+ buscar, httpOption);
+    return this._http.get(this.hostBase+"buscado/"+ buscar, httpOption);
    }
 
    public getReunionesFiltro(p1:string,p2:string,p3:string):Observable<any>{
