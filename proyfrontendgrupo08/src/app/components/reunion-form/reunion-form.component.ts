@@ -125,7 +125,7 @@ export class ReunionFormComponent implements OnInit {
           );
         });
 
-        /*let asunto="Reunion Empresaurios";
+        let asunto="Reunion Empresaurios";
         let mensaje="Hola a Todos/as, se le informa por medio de este mail que el dia "+this.reunion.fecha+" hay una reunion de '"+this.reunion.titulo+"' en el horario de "+this.reunion.horaInicio+" a "+this.reunion.horaFin+". Gracias por su atencion Empresaurios.";
         for(let i=0;i<this.reunion.participantes.length;i++){
           this.reunionService.enviarCorreo(asunto,this.reunion.participantes[i].Email,mensaje).subscribe(
@@ -136,7 +136,7 @@ export class ReunionFormComponent implements OnInit {
               console.log(error);
             }
           );
-        };*/
+        };
 
         
 
