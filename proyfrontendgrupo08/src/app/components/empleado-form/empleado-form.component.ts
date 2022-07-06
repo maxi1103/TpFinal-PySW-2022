@@ -111,15 +111,29 @@ export class EmpleadoFormComponent implements OnInit {
   }
 
   actualizarEmpleado() {
+    this.empleado.Dependencias=this.dependenciasAgregar;
     this.empleadoService.updateEmpleado(this.empleado).subscribe(
       result => {
         if (result.status == "1") {
-          alert(result.msg);
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Empleaod Actualizado',
+            showConfirmButton: false,
+            timer: 1500
+          });
+          this.router.navigate(['empleado']);
         }
       },
       error => {
         if (error.status == "0") {
-          alert(error.msg);
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Error al actualizar empleado',
+            showConfirmButton: false,
+            timer: 1500
+          });
         }
       })
   }

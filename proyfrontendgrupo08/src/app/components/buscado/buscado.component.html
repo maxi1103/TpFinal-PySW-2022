@@ -39,15 +39,15 @@
                             <td>{{reunion.titulo}}</td>
                             <td>{{reunion.fecha}}</td>
                             <td>{{reunion.horaInicio}} - {{reunion.horaFin}}</td>
-                            <div *ngIf="participa(reunion)">
+                            <div >
                            
-                            <td>{{reunion.oficina.numero}}</td>
-                            <td>
+                            <td *ngIf="participa(reunion)"> {{reunion.oficina.numero}}</td>
+                            <td *ngIf="participa(reunion)">
                                 <li style="list-style:none" *ngFor="let recu of reunion.recursos">{{recu.recurso}}</li>
-                            </td>
-                            <td>{{reunion.tipoReunion}}</td>
-                            <td>{{reunion.estadoReunion}}</td>
-                            <td>
+                            </td >
+                            <td *ngIf="participa(reunion)">{{reunion.tipoReunion}}</td>
+                            <td *ngIf="participa(reunion)">{{reunion.estadoReunion}}</td>
+                            <td *ngIf="participa(reunion)">
                                 <li style="list-style:none" *ngFor="let emp of reunion.participantes">{{emp.Nombre}}
                                     {{emp.Apellido}}</li>
                             </td>

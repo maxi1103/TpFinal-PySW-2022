@@ -121,6 +121,14 @@ query4.exec(function (err,usuarios){
             Dependencias:dependencia1
           });
           empleado.save();
+          const empleado1= new Empleado({
+            Apellido: 'Espinoza',
+            Legajo: '1234',
+            Nombre: 'Alfredo',
+            Email: 'alfredo_espi@hotmail.com',
+            Dependencias: dependencia1
+          });
+          empleado1.save();
         const usuario= new Usuario({
             username: 'admin',
             password: 'admin',
@@ -131,6 +139,8 @@ query4.exec(function (err,usuarios){
           usuario.save();
     }
 })
+
+
 
 
 
