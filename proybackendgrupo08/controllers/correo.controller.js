@@ -10,7 +10,7 @@ const enviarCorreo = (req=request,resp=response)=>{
         secure: false, // true for 465, false for other ports
         auth:{
             user:'42017525@fi.unju.edu.ar',
-            pass:'*********'
+            pass:''
         }
     });
 
