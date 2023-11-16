@@ -9,13 +9,13 @@ const enviarCorreo = (req=request,resp=response)=>{
         port:587,
         secure: false, // true for 465, false for other ports
         auth:{
-            user:'42017525@fi.unju.edu.ar',
-            pass:''
+            user:'correo',
+            pass:'contraseña'
         }
     });
 
     const opciones = {
-        from: '"Gestor De Eventos🥵" <42017525@fi.unju.edu.ar>',
+        from: '"Gestor De Eventos🥵" <correo.example>',
         subject:body.asunto,
         to:body.email,
         text:body.mensaje
